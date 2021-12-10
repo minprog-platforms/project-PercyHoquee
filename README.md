@@ -45,15 +45,20 @@ te ondersteunen met hun gewichtsdoelen
 ## Voorwaarden
 - Data: 
     de database wordt gevuld met de voedingswaarden van individuele
-    producten. 
-    De gebruiker heeft de mogelijkheid om deze met de 
+    producten. In Nederland is het verplicht voor producenten van
+    levensmiddelen om op de verpakking een etiket te plakken met
+    daarop de voedingswaarden van hun product.
+    De gebruiker heeft de mogelijkheid om deze waarden met de 
     hand in te vullen. 
     Daar is verder geen transformatie van data 
     voor nodig. 
     De mogelijkheid om een online database te scrapen 
-    wordt onderzocht.
-- Externe Componenten: 
-    Bootstraps sidebar zal gebruikt worden om een layout te maken
+    wordt onderzocht. [Hier](https://www.calorietabel.nl/index.php?idd=a)
+    een voorbeeld van een website die 
+    gescrapet zou kunnen worden. 
+- Externe Componenten:
+    De applicatie zal gebouwd worden via Django. Een 
+    Bootstrap sidebar zal gebruikt worden om een layout te maken
     die voor alle pagina's geladen zal worden. 
     Deze sidebar zal links bevatten voor betere site navigatie.
 - Vergelijkbare Webapps: 
@@ -61,7 +66,10 @@ te ondersteunen met hun gewichtsdoelen
     aanbieden waar de gebruiker toegang heeft tot de producten 
     database. 
     Met een premium versie bieden ze dan extra's aan, waaronder 
-    het toevoegen van maaltijden. Dit maakt het gebruik sneller. 
+    het toevoegen van maaltijden. Deze applicatie biedt de optie om
+    maaltijden op te slaan gratis aan. Gebruikers kunnen hierdoor 
+    maaltijden die ze regelmatig eten sneller opslaan, in plaats
+    van elke keer de producten een voor een op te zoeken.
     - MyFitnesspal: 
         de index pagina laat de gebruiker zien wat zijn/haar 
         calorieën inname is die dag en hoeveel calorieën er nog 
