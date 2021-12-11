@@ -92,3 +92,5 @@ te ondersteunen met hun gewichtsdoelen
     Waarschijnlijk zou de functie geroepen moeten worden voor elke 
     db.sqlite file; 
     per computer 1x of kan sqlite file mee in de github push?
+    Update: er hoeft maar een keer gescrapet te worden zolang de csv
+    file die eruit komt, wordt opgeslagen in een github folder "data"
