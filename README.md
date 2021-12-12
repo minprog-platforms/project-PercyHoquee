@@ -82,8 +82,8 @@ te ondersteunen met hun gewichtsdoelen
         in tegenstelling tot MyFitnesspal legt Food meer de nadruk
         op relatieve aantallen; de geconsumeerde hoeveelheden worden
         ook afgebeeld als percentage van de dagelijkse quotas.
-- Grootste Uitdaging:
-    Het implementeren van een scraper die uit een calorieën 
+- Grootste Uitdagingen:
+    - Het implementeren van een scraper die uit een calorieën 
     overzicht website een database kan creëren. 
     De benodigde skils zijn geoefend in eerdere vakken, alleen de
     vraag is, gaat een scraper functie niet heel veel laad tijd 
@@ -94,3 +94,9 @@ te ondersteunen met hun gewichtsdoelen
     per computer 1x of kan sqlite file mee in de github push?
     Update: er hoeft maar een keer gescrapet te worden zolang de csv
     file die eruit komt, wordt opgeslagen in een github folder "data"
+    - Update: Het implementeren van de functionaliteit om naar 
+    voorafgaande en komende dagen in de food diary te gaan.
+    In het verlengde hiervan een kalender functie, waarbij de
+    gebruiker kan schakelen tussen grotere periodes tussen twee
+    dagboek overzichten.
+    
