@@ -64,6 +64,8 @@ te ondersteunen met hun gewichtsdoelen
     Update: een kalender functie (datepicker) om een datum te 
     kunnen kiezen, kan geïmplementeerd worden via bestaande code.
     Dit is het voorbeeld van [Jquery](https://jqueryui.com/datepicker/). 
+    Update: in plaats van een Bootstrap sidebar zal de layout een
+    Bootstrap navbar (bovenaan de pagina) krijgen.
 - Vergelijkbare Webapps: 
     de trend die vergelijkbare apps volgen is een gratis versie 
     aanbieden waar de gebruiker toegang heeft tot de producten 
