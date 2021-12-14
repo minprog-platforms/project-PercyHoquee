@@ -39,7 +39,7 @@ Deze applicatie zal de doelgroep structuur, regelmaat en een
 snelle gebruikservaring bieden. 
 Al deze eigenschappen zullen belangrijk zijn om de gebruikers 
 te ondersteunen met hun gewichtsdoelen
-, wat die dan ook mogen zijn. 
+, wat die dan ook mogen zijn.
 
 ![Food Tracker](doc/foto_proposal.jpeg)
 ## Voorwaarden
@@ -61,6 +61,9 @@ te ondersteunen met hun gewichtsdoelen
     Bootstrap sidebar zal gebruikt worden om een layout te maken
     die voor alle pagina's geladen zal worden. 
     Deze sidebar zal links bevatten voor betere site navigatie.
+    Update: een kalender functie (datepicker) om een datum te 
+    kunnen kiezen, kan geïmplementeerd worden via bestaande code.
+    Dit is het voorbeeld van [Jquery](https://jqueryui.com/datepicker/). 
 - Vergelijkbare Webapps: 
     de trend die vergelijkbare apps volgen is een gratis versie 
     aanbieden waar de gebruiker toegang heeft tot de producten 
