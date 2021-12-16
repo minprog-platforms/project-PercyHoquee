@@ -1,0 +1,95 @@
+{% extends "food_tracker/layout.html" %}
+
+{% block body %}
+
+    <ul>
+
+{% for product in products %}
+
+    <div>
+
+    {% if date %}
+
+        <a href="{% url 'add_product' date product.id %}">
+
+    {% else %} 
+
+        <a href="{% url 'meal_add_product' meal.id product.id %}">
+
+    {% endif %}
+
+            <li>
+                <div>
+                    {{ product.name }}
+                </div>
+            </li>
+        </a>
+    </div>
+
+    {% if favorites %}
+
+        {% if product in favorites %}
+
+            <a href="{% url 'delete_favorite' date product.id %}">Verwijder Favoriet</a>
+
+        {% else %}
+
+            <a href="{% url 'add_favorite' date product.id %}">Voeg Favoriet Toe</a>
+
+        {% endif %}
+
+    {% endif %}
+
+    <br>
+
+    {% if product.creator == user %}
+
+        Jouw Product
+
+    {% endif %}
+
+{% endfor %}
+
+    </ul>
+
+{% if meals %}
+
+    <ul>
+
+    {% for meal in meals %}
+
+        <li>
+            
+        {% if date %}
+
+            <a href="{% url 'add_meal' date meal.id %}">
+
+        {% else %} 
+
+            <a href="{% url 'meal' meal.id %}">
+
+        {% endif %}
+
+                <div>
+                    {{ meal.name }}
+                </div>
+            </a>
+        </li>
+
+        {% if meal.creator == user %}
+
+            Jouw Gerecht
+
+        {% endif %}
+
+    {% empty %}
+
+        <a href="{% url 'meal' meal.id %}">Terug</a>
+
+    {% endfor %}
+
+    </ul>
+    
+{% endif %}
+
+{% endblock %}

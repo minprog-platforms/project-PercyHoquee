@@ -1,0 +1,22 @@
+{% extends "food_tracker/results_layout.html" %}
+
+{% block add_product_link %}
+
+    {% if product in meal.product.all %}
+
+        Product Is Al Toegevoegd Aan <a href="{% url 'meal' meal.id %}">Gerecht</a>
+
+    {% else %}
+
+        <a href="{% url 'meal_add_product' meal.id product.id %}">Voeg Toe</a>
+
+    {% endif %}
+
+{% endblock %}
+
+{% block if_products_empty %}
+
+    Geen resultaten. Ga <a href="{% url 'meal' meal.id %}">Terug</a>"
+
+{% endblock %}
+

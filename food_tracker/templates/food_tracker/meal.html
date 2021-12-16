@@ -1,0 +1,31 @@
+{% extends "food_tracker/layout.html" %}
+
+{% block body %} 
+
+    {{ meal.name }}
+
+    <ul>
+
+        {% for product in meal.product.all %}
+
+        <li>
+            {{ product.name }}
+        </li>
+
+        <li>
+            <a href="{% url 'meal_delete_product' meal.id product.id %}">Verwijder Product Uit Gerecht</a>
+        </li>
+
+        {% empty %}
+
+            Dit Gerecht Bevat Momenteel Geen Producten. Voeg Hieronder Producten Toe.
+
+        {% endfor %}
+
+    </ul>
+
+    <a href="{% url 'meal_search' meal.id %}">Voeg Product Toe</a>
+    <br>
+    <a href="{% url 'my_meals' %}">Bevestig Gerecht</a>
+
+{% endblock %}

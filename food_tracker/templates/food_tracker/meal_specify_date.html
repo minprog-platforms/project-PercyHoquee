@@ -1,0 +1,5 @@
+{% extends "food_tracker/specify_date.html" %}
+
+{% block form %}  
+    <form action="{% url 'meal_send_date' meal_id %}" method="post">
+{% endblock %}

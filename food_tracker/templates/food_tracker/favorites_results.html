@@ -1,0 +1,38 @@
+{% extends "food_tracker/results_layout.html" %}
+
+{% block add_product_link %}
+
+    <a href="{% url 'product_specify_date' product.id %}">Voeg Toe Aan Dagboek</a>
+
+{% endblock %}
+
+{% block product_favorite %}
+
+    <a href="{% url 'delete_product_favorite' product.id %}">Verwijder Favoriet</a>
+
+{% endblock %}
+
+{% block if_products_empty %}
+
+    Momenteel Geen Favoriete Producten. Ga <a href="{% url 'index' %}">Terug Naar Home</a>"
+
+{% endblock %}
+
+
+{% block add_meal_link %}
+
+    <a href="{% url 'meal_specify_date' meal.id %}">Voeg Toe Aan Dagboek</a>
+
+{% endblock %}
+
+{% block meal_favorite %}
+
+    <a href="{% url 'delete_meal_favorite' meal.id %}">Verwijder Favoriet</a>
+
+{% endblock %}
+
+{% block if_meals_empty %}
+
+    Momenteel Geen Favoriete Gerechten. Ga <a href="{% url 'index' %}">Terug Naar Home</a>"
+
+{% endblock %}

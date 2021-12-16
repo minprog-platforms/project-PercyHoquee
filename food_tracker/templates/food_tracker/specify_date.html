@@ -1,0 +1,14 @@
+{% extends "food_tracker/layout.html" %}
+
+{% block body %}
+
+    {% block form %}  
+    {% endblock %}
+
+        {% csrf_token %}
+        <label for="specify">date(yyyy-mm-dd):</label>
+        <input type="date" id="specify" name="date">
+        <input type="submit" value="Voeg Toe">
+    </form>       
+
+{% endblock %}

@@ -1,0 +1,354 @@
+{% extends "food_tracker/layout.html" %}
+
+{% block body %}
+    <div>
+        {% if date %}
+        {{ date }}
+        {% else %}
+        {{ day }}-{{ month }}-{{ year }}
+        {% endif %}
+    </div>
+    <div>
+        <table>
+            Ontbijt
+            <tr>
+                <th>
+                    Naam
+                </th>
+                <th>
+                    Hoeveelheid
+                </th>
+                <th>
+                    Cals
+                </th>
+                <th>
+                    Carbs
+                </th>
+                <th>
+                    Protein
+                </th>
+                <th>
+                    Fat
+                </th>
+            </tr>
+            {% if breakfast %}
+            {% for item in breakfast.items.all %}
+            <tr>
+                <td>
+                    {{ item.product.name }}
+                </td>
+                <td>
+                    {{ item.amount }} {{ item.product.unit }}
+                </td>
+                <td>
+                    {{ item.calories }} 
+                </td>
+                <td>
+                    {{ item.carbs }} 
+                </td>
+                <td>
+                    {{ item.protein }} 
+                </td>
+                <td>
+                    {{ item.fat }} 
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th>
+                </th>
+                <th>
+                </th>
+                {% for value in breakfast.nutrition %}
+                <th>
+                    Total
+                </th>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                {% for value in breakfast.nutrition %}
+                <td>
+                    {{ value }}
+                </td>
+                {% endfor %}
+            </tr>
+            {% else %}
+            <tr>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+            </tr>
+            {% endif %}
+        </table>
+        <br>
+        <table>
+            Lunch
+            <tr>
+                <th>
+                    Naam
+                </th>
+                <th>
+                    Hoeveelheid
+                </th>
+                <th>
+                    Cals
+                </th>
+                <th>
+                    Carbs
+                </th>
+                <th>
+                    Protein
+                </th>
+                <th>
+                    Fat
+                </th>
+            </tr>
+            {% if lunch %}
+            {% for item in lunch.items.all %}
+            <tr>
+                <td>
+                    {{ item.product.name }}
+                </td>
+                <td>
+                    {{ item.amount }} {{ item.product.unit }}
+                </td>
+                <td>
+                    {{ item.calories }} 
+                </td>
+                <td>
+                    {{ item.carbs }} 
+                </td>
+                <td>
+                    {{ item.protein }} 
+                </td>
+                <td>
+                    {{ item.fat }} 
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+            </tr>
+            {% endif %}
+        </table>
+        <br>
+        <table>
+            Avondeten
+            <tr>
+                <th>
+                    Naam
+                </th>
+                <th>
+                    Hoeveelheid
+                </th>
+                <th>
+                    Cals
+                </th>
+                <th>
+                    Carbs
+                </th>
+                <th>
+                    Protein
+                </th>
+                <th>
+                    Fat
+                </th>
+            </tr>
+            {% if dinner %}
+            {% for item in dinner.items.all %}
+            <tr>
+                <td>
+                    {{ item.product.name }}
+                </td>
+                <td>
+                    {{ item.amount }} {{ item.product.unit }}
+                </td>
+                <td>
+                    {{ item.calories }} 
+                </td>
+                <td>
+                    {{ item.carbs }} 
+                </td>
+                <td>
+                    {{ item.protein }} 
+                </td>
+                <td>
+                    {{ item.fat }} 
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+            </tr>
+            {% endif %}
+        </table>
+        <br>
+        <table>
+            Snacks
+            <tr>
+                <th>
+                    Naam
+                </th>
+                <th>
+                    Hoeveelheid
+                </th>
+                <th>
+                    Cals
+                </th>
+                <th>
+                    Carbs
+                </th>
+                <th>
+                    Protein
+                </th>
+                <th>
+                    Fat
+                </th>
+            </tr>
+            {% if snacks %}
+            {% for item in snacks.items.all %}
+            <tr>
+                <td>
+                    {{ item.product.name }}
+                </td>
+                <td>
+                    {{ item.amount }} {{ item.product.unit }}
+                </td>
+                <td>
+                    {{ item.calories }} 
+                </td>
+                <td>
+                    {{ item.carbs }} 
+                </td>
+                <td>
+                    {{ item.protein }} 
+                </td>
+                <td>
+                    {{ item.fat }} 
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+                <td>
+                    -
+                </td>
+            </tr>
+            {% endif %}
+        </table>
+        <br>
+        <table>
+            <tr>
+                <th>
+
+                </th>
+                <th>
+
+                </th>
+                <th>
+                    Total
+                </th>
+                <th>
+                    Total
+                </th>
+                <th>
+                    Total
+                </th>
+                <th>
+                    Total
+                </th>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+                <td>
+                    {{ total_calories }}
+                </td>
+                <td>
+                    {{ total_carbs }}
+                </td>
+                <td>
+                    {{ total_protein }}
+                </td>
+                <td>
+                    {{ total_fat }}
+                </td>
+            </tr>
+        </table>
+    </div>
+    <a href="{% url 'search' date %}">Voeg Toe</a>
+{% endblock %}

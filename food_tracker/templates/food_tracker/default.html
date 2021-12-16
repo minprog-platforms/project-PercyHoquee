@@ -1,0 +1,37 @@
+{% extends "food_tracker/layout.html" %}
+
+{% block body %}
+
+    <form action="{% url 'set_default' meal.id date %}" method="post">
+
+        {% csrf_token %}
+
+        {% for product in meal.product.all %}
+
+            {% if product in products %}
+
+                {% for default in defaults %}
+
+                    {% if product == default.product %}
+
+                        <input type="text" name="{{ product.id }}" value="{{ default.amount }}">
+                        <br>
+
+                    {% endif %}
+
+                {% endfor %}
+
+            {% else %}
+
+                <input type="text" name="{{ product.id }}">
+                <br>
+
+            {% endif %}
+
+        {% endfor %}
+
+        <input type="submit" value="Bevestig">
+
+    </form>
+
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "food_tracker/results_layout.html" %}
+
+{% block add_product_link %}
+
+    <a href="{% url 'add_product' product.id date %}">Voeg Toe Aan Dagboek</a>
+
+{% endblock %}
+
+{% block product_favorite %}
+
+    {% if product in favorites %}
+
+        <a href="{% url 'delete_product_favorite' product.id %}">Verwijder Favoriet</a>
+
+    {% else %}
+
+        <a href="{% url 'add_product_favorite' product.id %}">Voeg Favoriet Toe</a>
+
+    {% endif %}
+
+{% endblock %}
+
+
+{% block add_meal_link %}
+
+    <a href="{% url 'add_meal' meal.id date %}">Voeg Toe</a>
+
+{% endblock %}
+
+{% block meal_favorite %}
+
+    {% if meal in favorites %}
+
+        <a href="{% url 'delete_meal_favorite' meal.id %}">Verwijder Favoriet</a>
+
+    {% else %}
+
+        <a href="{% url 'add_meal_favorite' meal.id %}">Voeg Favoriet Toe</a>
+
+    {% endif %}
+
+{% endblock %}

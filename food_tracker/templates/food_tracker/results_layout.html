@@ -1,0 +1,96 @@
+{% extends "food_tracker/layout.html" %}
+
+{% block body %}
+
+    {% for product in products %}
+
+        <div>
+
+            {{ product.name }}
+
+            <ul>
+
+                {% if product.creator == user %}
+
+                <li>
+
+                    Jouw Product
+
+                </li>
+
+                {% endif %}
+
+                <li>
+
+                    {% block add_product_link %}
+                    {% endblock %}
+
+                </li>
+
+                <li>
+
+                    {% block product_favorite %}
+                    {% endblock %}
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    {% empty %}
+
+    {% block if_products_empty %}
+    {% endblock %}
+
+    {% endfor %}
+
+    {% for meal in meals %}
+
+        <div>
+            
+            {{ meal.name }}
+
+            <ul>
+
+                {% if meal.creator == user %}
+
+                <li>
+                    Jouw Gerecht
+                </li>
+
+                {% endif %}
+
+                <li>
+                    
+                {% block add_meal_link %}
+                {% endblock %}
+
+                </li>
+
+                <li>
+
+                {% block extra %}
+                {% endblock %}
+
+                </li>
+
+                <li>
+
+                    {% block meal_favorite %}
+                    {% endblock %}
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    {% empty %}
+
+    {% block if_meals_empty %}
+    {% endblock %}
+
+    {% endfor %}
+
+{% endblock %}
