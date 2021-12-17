@@ -1,96 +1,185 @@
 {% extends "food_tracker/layout.html" %}
 
+{% block head %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        .checked {
+          color: gold;
+        }
+
+        .container {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+            border-radius: 25px;
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .column {
+            flex: 50%;
+            padding: 10px;
+            border-radius: 25px;
+        }
+
+    </style>
+
+{% endblock %}
+
 {% block body %}
 
-    {% for product in products %}
+    <div class="row">
 
-        <div>
+        <div class="column">
 
-            {{ product.name }}
+            <div class="container results_product">
 
-            <ul>
+                Producten
 
-                {% if product.creator == user %}
+            </div>
 
-                <li>
+            <br>
 
-                    Jouw Product
+            {% for product in products %}
 
-                </li>
+                <div class="container product">
 
-                {% endif %}
+                    <div class="row">
 
-                <li>
+                        <div class="column">
+
+                            {{ product.name }}
+
+                        </div>
+
+                        <div class="column">
+
+                            {% if product in favorites %}
+
+                                <a href="{% url 'delete_product_favorite' product.id %}"><span class="fa fa-star checked"></span></a>
+
+                            {% else %}
+
+                                <a href="{% url 'add_product_favorite' product.id %}"><span class="fa fa-star"></span></a>
+
+                            {% endif %}
+
+                            {% if product.creator == user %}
+
+                                <i class="fa fa-key"></i>
+
+                            {% endif %}
+
+                            <a href="{% url 'faulty_product' product.id %}"><i class="fa fa-exclamation-circle" style="color:red"></i></a>
+
+                        </div>
+
+                    </div>
+
+                    Per 100 {{ product.unit }} :
+
+                    <br>
+
+                    {{ product.calories }} Calorieën
+                    
+                    <br>
+
+                    {{ product.carbs }} gram Koolhydraten
+
+                    <br>
+
+                    {{ product.protein }} gram Eiwitten
+
+                    <br>
+
+                    {{ product.fat }} gram Vet
+
+                    <br>
 
                     {% block add_product_link %}
                     {% endblock %}
 
-                </li>
+                </div>
 
-                <li>
+            {% empty %}
 
-                    {% block product_favorite %}
-                    {% endblock %}
+            {% block if_products_empty %}
+            {% endblock %}
 
-                </li>
-
-            </ul>
+            {% endfor %}
 
         </div>
 
-    {% empty %}
+        <div class="column">
 
-    {% block if_products_empty %}
-    {% endblock %}
+            <div class="container results_p">
 
-    {% endfor %}
+                Meals
 
-    {% for meal in meals %}
+            </div>
 
-        <div>
-            
-            {{ meal.name }}
+            {% for meal in meals %}
 
-            <ul>
-
-                {% if meal.creator == user %}
-
-                <li>
-                    Jouw Gerecht
-                </li>
-
-                {% endif %}
-
-                <li>
+                <div class="container meal">
                     
-                {% block add_meal_link %}
-                {% endblock %}
+                    {{ meal.name }}
 
-                </li>
+                    {% if meal in favorites %}
 
-                <li>
+                        <a href="{% url 'delete_meal_favorite' meal.id %}"><span class="fa fa-star checked"></a>
 
-                {% block extra %}
-                {% endblock %}
+                    {% else %}
 
-                </li>
+                        <a href="{% url 'add_meal_favorite' meal.id %}"><span class="fa fa-star"></a>
 
-                <li>
+                    {% endif %}
 
-                    {% block meal_favorite %}
+                    {% if meal.creator == user %}
+
+                        <i class="fa fa-key"></i>
+
+                    {% endif %}
+
+                    <ul>
+
+                        {% for product in meal.product.all %}
+
+                            <li>
+
+                                {{ product.name }}
+
+                            </li>
+
+                        {% endfor %}
+
+
+                    </ul>
+
+                    {% block add_meal_link %}
+                    {% endblock %}
+                    
+                    <br>
+
+                    {% block extra %}
                     {% endblock %}
 
-                </li>
+                </div>
 
-            </ul>
+            {% empty %}
+
+            {% block if_meals_empty %}
+            {% endblock %}
+
+            {% endfor %}
 
         </div>
 
-    {% empty %}
-
-    {% block if_meals_empty %}
-    {% endblock %}
-
-    {% endfor %}
+    </div>
 
 {% endblock %}

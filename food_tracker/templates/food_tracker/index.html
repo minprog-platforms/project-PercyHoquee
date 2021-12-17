@@ -1,157 +1,194 @@
 {% extends "food_tracker/layout.html" %}
 
 {% block head %}
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.0/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
-    <script>
-    $( function() {
-    $( "#datepicker" ).datepicker();
-    } );
-    </script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+
+        .container {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+            border-radius: 25px;
+            text-align: center;
+        }
+
+        table {
+            margin: auto;
+            width: 50%;
+            padding: 10px;
+        }
+
+        .row {
+            display: flex;
+        }
+
+        .column {
+            flex: 50%;
+            padding: 10px;
+        }
+
+    </style>
+
 {% endblock %}
 
 {% block body %}
 
-    <div>
-        {{ date.day }}-{{ date.month }}-{{ date.year }}
+    <div class="container date">
+
+        <div class="container date_present">
+
+            <a href="{% url 'alt' previous %}"><button style='font-size:24px'><i class="fa fa-arrow-left" aria-hidden="true"></i></button></a>
+
+            {{ date.day }}-{{ date.month }}-{{ date.year }}
+
+            <a href="{% url 'alt' next %}"><button style='font-size:24px'><i class="fa fa-arrow-right" aria-hidden="true"></i></button></a>
+
+        </div>
+
+        <br>
+
+        <div class="container date_calender">
+
+            <form action="{% url 'calender' %}" method="post">
+
+                {% csrf_token %}
+        
+                Datum: <input type="date" name="date">
+    
+                <input type="submit" value="Kies Een Datum">
+        
+            </form>
+
+        </div>
+    
     </div>
 
-    <div>
+    <div class="row">
 
-    {% for period in periods %}
+        <div class="column">
 
-        <table>
-            {{ period.name }}
-            <tr>
-                <th>
-                    Naam
-                </th>
-                <th>
-                    Hoeveelheid
-                </th>
-                <th>
-                    Cals
-                </th>
-                <th>
-                    Carbs
-                </th>
-                <th>
-                    Protein
-                </th>
-                <th>
-                    Fat
-                </th>
-            </tr>
-            {% for item in period.items.all %}
-            <tr>
-                <td>
-                    {{ item.product.name }}
-                </td>
-                <td>
-                    {{ item.amount }} {{ item.product.unit }}
-                </td>
-                <td>
-                    {{ item.calories }} 
-                </td>
-                <td>
-                    {{ item.carbs }} 
-                </td>
-                <td>
-                    {{ item.protein }} 
-                </td>
-                <td>
-                    {{ item.fat }} 
-                </td>
-            </tr>
-            {% endfor %}
+            <div class="container table">
+
+            {% for period in periods %}
+
+                <table>
+                    {{ period.name }}
+                    <tr>
+                        <th>
+                            Naam
+                        </th>
+                        <th>
+                            Hoeveelheid
+                        </th>
+                        <th>
+                            Calorie
+                        </th>
+                        <th>
+                            Koolhydraten
+                        </th>
+                        <th>
+                            Eiwit
+                        </th>
+                        <th>
+                            Vet
+                        </th>
+                    </tr>
+                    {% for item in period.items.all %}
+                    <tr>
+                        <td>
+                            {{ item.product.name }}
+                        </td>
+                        <td>
+                            {{ item.amount }} {{ item.product.unit }}
+                        </td>
+                        <td>
+                            {{ item.calories }} 
+                        </td>
+                        <td>
+                            {{ item.carbs }} 
+                        </td>
+                        <td>
+                            {{ item.protein }} 
+                        </td>
+                        <td>
+                            {{ item.fat }} 
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    
+                    <tr>
+                        <th>
+                        </th>
+                        <th>
+                        </th>
+                        {% for value in period.nutrition %}
+                        <th>
+                            Totaal
+                        </th>
+                        {% endfor %}
+                    </tr>
+                    <tr>
+                        <td>
+                        </td>
+                        <td>
+                        </td>
+                        {% for value in period.nutrition %}
+                        <td>
+                            {{ value }}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                </table>
+                <br>
+
+            {% endfor %}  
+
+            </div>
+
+        </div>
+
+        <div class="column">
+
+            <div class="container daily_summary">
+
+                Dag Overzicht
+
+                <br>
+                <br>
+
+                Calorieën: {{ total_calories }}
+
+                <br>
+                <br>
+
+                Koolhydraten: {{ total_carbs }} gram
+
+                <br>
+                <br>
+
+                Eiwitten: {{ total_protein }} gram
+
+                <br>
+                <br>
+
+                Vet: {{ total_fat }} gram
+
+            </div>
+
+            <div class="container add_button">
+
+                <br>
+
+                <a href="{% url 'search' alt_date %}"><i class="fa fa-plus-circle" style="font-size:48px;color:green"></i></a>
             
-            <tr>
-                <th>
-                </th>
-                <th>
-                </th>
-                {% for value in period.nutrition %}
-                <th>
-                    Total
-                </th>
-                {% endfor %}
-            </tr>
-            <tr>
-                <td>
-                </td>
-                <td>
-                </td>
-                {% for value in period.nutrition %}
-                <td>
-                    {{ value }}
-                </td>
-                {% endfor %}
-            </tr>
-        </table>
-        <br>
+                <br>
+        
+            </div>
 
-    {% endfor %}  
+        </div>
 
-        <table>
-            <tr>
-                <th>
-
-                </th>
-                <th>
-
-                </th>
-                <th>
-                    Dagelijks Total
-                </th>
-                <th>
-                    Dagelijks Total
-                </th>
-                <th>
-                    Dagelijks Total
-                </th>
-                <th>
-                    Dagelijks Total
-                </th>
-            </tr>
-            <tr>
-                <td>
-
-                </td>
-                <td>
-
-                </td>
-                <td>
-                    {{ total_calories }}
-                </td>
-                <td>
-                    {{ total_carbs }}
-                </td>
-                <td>
-                    {{ total_protein }}
-                </td>
-                <td>
-                    {{ total_fat }}
-                </td>
-            </tr>
-        </table>
-        <br>
     </div>
-    <a href="{% url 'search' alt_date %}">Voeg Toe</a><br>
-
-    <a href="{% url 'alt' previous %}">Gister</a><br>
-
-    <a href="{% url 'alt' next %}">Morgen</a><br>
-
-    <form action="{% url 'calender' %}" method="post">
-        {% csrf_token %}
-        <p>Date: <input type="text" id="datepicker" name="date"></p>
-    </form>
-
-
-
 
 {% endblock %}

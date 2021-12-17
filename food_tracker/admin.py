@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Favs, User, Product, Meal, Diary, DiaryEntry, Breakfast, Lunch, Dinner, Snacks, ProductInstance, Favs, Default, DefaultInstance
+from .models import Favs, User, Product, Meal, Diary, DiaryEntry, Breakfast, Lunch, Dinner, Snacks, ProductInstance, Favs, Default, DefaultInstance, Faulty
 
 # Register your models here.
 admin.site.register(User)
@@ -16,3 +16,4 @@ admin.site.register(ProductInstance)
 admin.site.register(Favs)
 admin.site.register(DefaultInstance)
 admin.site.register(Default)
+admin.site.register(Faulty)

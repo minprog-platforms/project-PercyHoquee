@@ -8,7 +8,7 @@ from django import forms
 import datetime
 from django.core.exceptions import ObjectDoesNotExist
 
-from .models import Breakfast, DefaultInstance, Lunch, ProductInstance, User, Product, Meal, Diary, DiaryEntry, Dinner, Snacks, Favs, Default
+from .models import Breakfast, DefaultInstance, Lunch, ProductInstance, User, Product, Meal, Diary, DiaryEntry, Dinner, Snacks, Favs, Default, Faulty
 
 UNIT_CHOICES = [
         ('ml.', 'ml.'),
@@ -305,11 +305,7 @@ def add_product(request, date, product_id):
 def calender(request):
     date = request.POST["date"]
 
-    cut_date = date.split("/")
-
-    new_date = f"{cut_date[2]}-{cut_date[0]}-{cut_date[1]}"
-
-    return HttpResponseRedirect(reverse("alt", args=(new_date,)))
+    return HttpResponseRedirect(reverse("alt", args=(date,)))
 
 
 def new_product(request):
@@ -635,6 +631,15 @@ def get_default(request, meal_id, date):
             "date": date,
             "message": "Er Zijn Nog Geen Voorkeuren Ingesteld Voor Dit Product",
         })
+
+
+def faulty_product(request, product_id):
+    product = Product.objects.get(id=product_id)
+
+    faulty_product = Faulty(user=request.user, product=product)
+    faulty_product.save()
+
+    return HttpResponseRedirect(reverse("index"))
 
 
 def instant_periods(entry):

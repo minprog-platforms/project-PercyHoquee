@@ -2,29 +2,16 @@
 
 {% block add_meal_link %}
 
-    <a href="{% url 'meal' meal.id %}">Edit</a>
+    <a href="{% url 'meal_specify_date' meal.id %}">Voeg Toe Aan Dagboek</a>
 
 {% endblock %}
 
 {% block extra %}
 
-    <a href="{% url 'meal_specify_date' meal.id %}">Voeg Toe Aan Dagboek</a>
+    <a href="{% url 'meal' meal.id %}">Edit</a>
 
 {% endblock %}
 
-{% block meal_favorite %}
-
-    {% if meal in favorites %}
-
-        <a href="{% url 'delete_meal_favorite' meal.id %}">Verwijder Favoriet</a>
-
-    {% else %}
-
-        <a href="{% url 'add_meal_favorite' meal.id %}">Voeg Favoriet Toe</a>
-
-    {% endif %}
-
-{% endblock %}
 
 {% block if_meals_empty %} 
 

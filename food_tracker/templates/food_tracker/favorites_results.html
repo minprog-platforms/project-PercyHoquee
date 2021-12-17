@@ -6,11 +6,7 @@
 
 {% endblock %}
 
-{% block product_favorite %}
 
-    <a href="{% url 'delete_product_favorite' product.id %}">Verwijder Favoriet</a>
-
-{% endblock %}
 
 {% block if_products_empty %}
 
@@ -25,11 +21,6 @@
 
 {% endblock %}
 
-{% block meal_favorite %}
-
-    <a href="{% url 'delete_meal_favorite' meal.id %}">Verwijder Favoriet</a>
-
-{% endblock %}
 
 {% block if_meals_empty %}
 

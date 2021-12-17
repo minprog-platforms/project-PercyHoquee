@@ -187,6 +187,11 @@ class DefaultInstance(models.Model):
     amount = PositiveIntegerField(null=True)
 
 
+class Faulty(models.Model):
+    user = ForeignKey(User, on_delete=models.CASCADE)
+    product = ForeignKey(Product, on_delete=models.CASCADE)
+
+
 
 
 

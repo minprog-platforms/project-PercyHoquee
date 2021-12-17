@@ -1,31 +1,67 @@
 {% extends "food_tracker/layout.html" %}
 
+{% block head %}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+{% endblock %}
+
 {% block body %} 
 
     {{ meal.name }}
 
-    <ul>
-
-        {% for product in meal.product.all %}
-
-        <li>
-            {{ product.name }}
-        </li>
-
-        <li>
-            <a href="{% url 'meal_delete_product' meal.id product.id %}">Verwijder Product Uit Gerecht</a>
-        </li>
-
-        {% empty %}
-
-            Dit Gerecht Bevat Momenteel Geen Producten. Voeg Hieronder Producten Toe.
-
-        {% endfor %}
-
-    </ul>
-
-    <a href="{% url 'meal_search' meal.id %}">Voeg Product Toe</a>
     <br>
+
+    {% for product in meal.product.all %}
+
+        {{ product.name }}
+
+        <ul>
+
+            Per 100 {{ product.unit }} :
+
+            <li>
+
+                {{ product.calories }} Calorieën 
+
+            </li>
+
+            <li>
+
+                {{ product.carbs }} Koolhydraten
+
+            </li>
+
+            <li>
+
+                {{ product.protein }} Eiwitten
+
+            </li>
+
+            <li>
+
+                {{ product.fat }} Vet
+
+            </li>
+
+        </ul>
+
+        <a href="{% url 'meal_delete_product' meal.id product.id %}"><i class="fa fa-times" aria-hidden="true" style="color:red"></i></a>
+
+        <br>
+
+    {% empty %}
+
+        Dit Gerecht Bevat Momenteel Geen Producten. Voeg Hieronder Producten Toe.
+
+    {% endfor %}
+
+    <br>
+
+    <a href="{% url 'meal_search' meal.id %}">Voeg Product Toe Aan Gerecht</a>
+
+    <br>
+
     <a href="{% url 'my_meals' %}">Bevestig Gerecht</a>
 
 {% endblock %}

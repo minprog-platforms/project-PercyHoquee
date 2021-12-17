@@ -9,6 +9,7 @@ urlpatterns = [
     path("register", views.register, name="register"),
     path("calender", views.calender, name="calender"),
     path("product/new_product", views.new_product, name="new_product"),
+    path("product/<int:product_id>/faulty", views.faulty_product, name="faulty_product"),
     path("product/<int:product_id>/specify", views.product_specify_date, name="product_specify_date"),
     path("product/<int:product_id>/send", views.product_send_date, name="product_send_date"),
     path("product/<int:product_id>add_product/<str:date>", views.add_product, name="add_product"),
