@@ -1,9 +1,41 @@
 {% extends "food_tracker/layout.html" %}
 
 {% block body %} 
-    <form method="post">
+
+    <form class="new_product_form" method="post">
+
         {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Maak Nieuw Product"> 
+
+        <label for="name">Product Naam</label>
+
+        <input type="text" id="name" name="name">
+
+        <label for="gram">gr.</label>
+
+        <input type="radio" id="gram" name="unit" value="gr.">
+
+        <label for="ml">ml.</label>
+
+        <input type="radio" id="ml" name="unit" value="ml.">
+
+        <label for="calories">Calorieën</label>
+
+        <input type="number" id="calories" name="calories" min="0">
+
+        <label for="carbs">Koolhydraten</label>
+
+        <input type="number" id="carbs" name="carbs" min="0">
+
+        <label for="protein">Eiwit</label>
+
+        <input type="number" id="protein" name="protein" min="0">
+
+        <label for="fat">Vet</label>
+
+        <input type="number" id="fat" name="fat" min="0">
+    
+        <input type="submit" id="sbmBtn" value="Maak Nieuw Product"> 
+
     </form>
+
 {% endblock %} 

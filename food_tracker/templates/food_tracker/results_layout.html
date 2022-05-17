@@ -5,28 +5,48 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
-        .checked {
-          color: gold;
-        }
 
-        .container {
-            margin: auto;
-            width: 50%;
-            padding: 10px;
-            border-radius: 25px;
-            text-align: center;
-            border: 1px solid black;
-        }
+        {% if products %}
 
-        .row {
-            display: flex;
-        }
+            {% if meals %}
 
-        .column {
-            flex: 50%;
-            padding: 10px;
-            border-radius: 25px;
-        }
+                .left {
+                    margin-left: auto;
+                    margin-right: 50px;
+                    width: 300px;
+                    padding: 10px;
+                    border-radius: 25px;
+                }
+
+                .right {
+                    margin-left: 50px;
+                    margin-right: auto;
+                    width: 300px;
+                    padding: 10px;
+                    border-radius: 25px;
+                }
+
+            {% else %}
+
+                .column {
+                    margin: auto;
+                    width: 300px;
+                    padding: 10px;
+                    border-radius: 25px;
+                }
+
+            {% endif %}
+
+        {% else %}
+
+            .column {
+                margin: auto;
+                width: 300px;
+                padding: 10px;
+                border-radius: 25px;
+            }
+
+        {% endif %}
 
     </style>
 
@@ -34,11 +54,19 @@
 
 {% block body %}
 
+    {% block header %}
+    {% endblock %}
+
+    {% block back_to_search %}
+    {% endblock %}
+
     <div class="row">
 
-        <div class="column">
+        {% if products %}
 
-            <div class="container results_product">
+        <div class="column left">
+
+            <div class="results_container results_product">
 
                 Producten
 
@@ -48,17 +76,23 @@
 
             {% for product in products %}
 
-                <div class="container product">
+                <div class="results_container product">
 
                     <div class="row">
 
-                        <div class="column">
+                        <div class="thirds">
+
+                            
+
+                        </div>
+
+                        <div class="thirds">
 
                             {{ product.name }}
 
                         </div>
 
-                        <div class="column">
+                        <div class="thirds">
 
                             {% if product in favorites %}
 
@@ -82,26 +116,6 @@
 
                     </div>
 
-                    Per 100 {{ product.unit }} :
-
-                    <br>
-
-                    {{ product.calories }} Calorieën
-                    
-                    <br>
-
-                    {{ product.carbs }} gram Koolhydraten
-
-                    <br>
-
-                    {{ product.protein }} gram Eiwitten
-
-                    <br>
-
-                    {{ product.fat }} gram Vet
-
-                    <br>
-
                     {% block add_product_link %}
                     {% endblock %}
 
@@ -116,58 +130,68 @@
 
         </div>
 
-        <div class="column">
+        {% endif %}
 
-            <div class="container results_p">
+        {% if meals %}
 
-                Meals
+        <div class="column right">
+
+            <div class="results_container results_meal">
+
+                Gerechten
 
             </div>
 
+            <br>
+
             {% for meal in meals %}
 
-                <div class="container meal">
+                <div class="results_container meal">
+
+                    <div class="row">
+
+                        <div class="thirds">
+
+
+
+                        </div>
+
+                        <div class="thirds">
+
+                            {{ meal.name }}
+
+                        </div>
+
+
+                        <div class="thirds">
+
+                            {% if meal in favorites %}
+
+                                <a href="{% url 'delete_meal_favorite' meal.id %}"><span class="fa fa-star checked"></a>
+
+                            {% else %}
+
+                                <a href="{% url 'add_meal_favorite' meal.id %}"><span class="fa fa-star"></a>
+
+                            {% endif %}
+
+                            {% if meal.creator == user %}
+
+                                <i class="fa fa-key"></i>
+
+                            {% endif %}
+
+                        </div>
+
+                    </div>
+
+                {% block add_meal_link %}
+                {% endblock %}
                     
-                    {{ meal.name }}
+                <br>
 
-                    {% if meal in favorites %}
-
-                        <a href="{% url 'delete_meal_favorite' meal.id %}"><span class="fa fa-star checked"></a>
-
-                    {% else %}
-
-                        <a href="{% url 'add_meal_favorite' meal.id %}"><span class="fa fa-star"></a>
-
-                    {% endif %}
-
-                    {% if meal.creator == user %}
-
-                        <i class="fa fa-key"></i>
-
-                    {% endif %}
-
-                    <ul>
-
-                        {% for product in meal.product.all %}
-
-                            <li>
-
-                                {{ product.name }}
-
-                            </li>
-
-                        {% endfor %}
-
-
-                    </ul>
-
-                    {% block add_meal_link %}
-                    {% endblock %}
-                    
-                    <br>
-
-                    {% block extra %}
-                    {% endblock %}
+                {% block extra %}
+                {% endblock %}
 
                 </div>
 
@@ -179,6 +203,8 @@
             {% endfor %}
 
         </div>
+
+        {% endif %}
 
     </div>
 

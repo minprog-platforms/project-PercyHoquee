@@ -1,5 +1,17 @@
 {% extends "food_tracker/specify_date.html" %}
 
+{% block header %}
+
+    <div class="header">
+
+        {{ product.name }}
+
+    </div>
+
+{% endblock %}
+
 {% block form %}  
-    <form action="{% url 'product_send_date' product_id %}" method="post">
+
+    <form class="date_form" action="{% url 'product_send_date' product.id %}" method="post">
+
 {% endblock %}

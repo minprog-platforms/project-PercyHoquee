@@ -1,20 +1,40 @@
 {% extends "food_tracker/layout.html" %}
 
 {% block body %} 
-    <form method="post">
+
+    <div class="header">
+
+        <strong>
+
+            {{ product.name }}
+
+        </strong>
+
+    </div>
+
+    <form id="add_product_form" method="post">
+
         {% csrf_token %}
-        <input type="text" name="amount"><br>
+
+        <label for="amount">Hoeveelheid ({{ product.unit }})</label>
+        <input type="number" id="amount" name="amount" min="0"><br>
         
+        <label for="breakfast">Breakfast</label>
         <input type="radio" id="breakfast" name="period" value="breakfast">
-        <label for="breakfast">Breakfast</label><br>
+
+        <label for="lunch">Lunch</label>
         <input type="radio" id="lunch" name="period" value="lunch">
-        <label for="lunch">Lunch</label><br>
+        
+        <label for="dinner">Dinner</label>
         <input type="radio" id="dinner" name="period" value="dinner">
-        <label for="dinner">Dinner</label><br>
+        
+        <label for="snacks">Snacks</label>
         <input type="radio" id="snacks" name="period" value="snacks">
-        <label for="snacks">Snacks</label><br>
+
+        <br>
 
         <input type="submit" value="Voeg Toe">
 
     </form>
+
 {% endblock %}  

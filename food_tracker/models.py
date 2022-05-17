@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models.fields import CharField, IntegerField, DateField, PositiveIntegerField
 from django.db.models.fields.related import ForeignKey, ManyToManyField, OneToOneField
+from . import helperfunctie
 
 
 # Create your models here.
@@ -21,18 +22,6 @@ class Product(models.Model):
     protein = PositiveIntegerField()
     fat = PositiveIntegerField()
     creator = ForeignKey(User, on_delete=models.PROTECT, related_name='created_products')
-
-    def calc_calories(self, amount: int):
-        return self.calories / 100 * amount
-
-    def calc_carbs(self, amount: int):
-        return self.carbs / 100 * amount
-
-    def calc_protein(self, amount: int):
-        return self.protein / 100 * amount
-
-    def calc_fat(self, amount: int):
-        return self.fat / 100 * amount
 
 
 class Meal(models.Model):
@@ -55,48 +44,15 @@ class Breakfast(models.Model):
     name = "Ontbijt"
 
     def nutrition(self):
-        calories = 0
-        carbs = 0
-        protein = 0
-        fat = 0
-        nutrition = []
+        return helperfunctie.meal_total(self)
 
-        for item in self.items.all():
-            calories += item.calories()
-            carbs += item.carbs()
-            protein += item.protein()
-            fat += item.fat()
-
-        nutrition.append(calories)
-        nutrition.append(carbs)
-        nutrition.append(protein)
-        nutrition.append(fat)
-
-        return nutrition
 
 class Lunch(models.Model):
     entry = OneToOneField(DiaryEntry, on_delete=models.CASCADE, related_name='lunch')
     name = "Lunch"
 
     def nutrition(self):
-        calories = 0
-        carbs = 0
-        protein = 0
-        fat = 0
-        nutrition = []
-
-        for item in self.items.all():
-            calories += item.calories()
-            carbs += item.carbs()
-            protein += item.protein()
-            fat += item.fat()
-
-        nutrition.append(calories)
-        nutrition.append(carbs)
-        nutrition.append(protein)
-        nutrition.append(fat)
-
-        return nutrition
+        return helperfunctie.meal_total(self)
 
 
 class Dinner(models.Model):
@@ -104,24 +60,7 @@ class Dinner(models.Model):
     name = "Avondeten"
 
     def nutrition(self):
-        calories = 0
-        carbs = 0
-        protein = 0
-        fat = 0
-        nutrition = []
-
-        for item in self.items.all():
-            calories += item.calories()
-            carbs += item.carbs()
-            protein += item.protein()
-            fat += item.fat()
-
-        nutrition.append(calories)
-        nutrition.append(carbs)
-        nutrition.append(protein)
-        nutrition.append(fat)
-
-        return nutrition
+        return helperfunctie.meal_total(self)
 
 
 class Snacks(models.Model):
@@ -129,24 +68,7 @@ class Snacks(models.Model):
     name = "Snacks"
 
     def nutrition(self):
-        calories = 0
-        carbs = 0
-        protein = 0
-        fat = 0
-        nutrition = []
-
-        for item in self.items.all():
-            calories += item.calories()
-            carbs += item.carbs()
-            protein += item.protein()
-            fat += item.fat()
-
-        nutrition.append(calories)
-        nutrition.append(carbs)
-        nutrition.append(protein)
-        nutrition.append(fat)
-
-        return nutrition
+        return helperfunctie.meal_total(self)
 
 
 class ProductInstance(models.Model):
@@ -158,16 +80,16 @@ class ProductInstance(models.Model):
     amount = IntegerField()
 
     def calories(self):
-        return self.product.calc_calories(self.amount)
+        return helperfunctie.calc(self.product.calories, self.amount)
 
     def carbs(self):
-        return self.product.calc_carbs(self.amount)
+        return helperfunctie.calc(self.product.carbs, self.amount)
 
     def protein(self):
-        return self.product.calc_protein(self.amount)
+        return helperfunctie.calc(self.product.protein, self.amount)
 
     def fat(self):
-        return self.product.calc_fat(self.amount)
+        return helperfunctie.calc(self.product.fat, self.amount)
 
 
 class Favs(models.Model):

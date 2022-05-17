@@ -2,13 +2,18 @@
 
 {% block body %}
 
+    {% block header %}
+    {% endblock %}
+
     {% block form %}  
     {% endblock %}
 
         {% csrf_token %}
-        <label for="specify">date(yyyy-mm-dd):</label>
-        <input type="date" id="specify" name="date">
-        <input type="submit" value="Voeg Toe">
-    </form>       
+        
+        <label for="specify">Datum:</label>
+        <input type="date" class="datepicker" id="specify" name="date">
+        <input type="submit" value="Kies Een Datum">
+
+    </form>
 
 {% endblock %}

@@ -4,58 +4,29 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <style>
-
-        .container {
-            margin: auto;
-            width: 50%;
-            padding: 10px;
-            border-radius: 25px;
-            text-align: center;
-        }
-
-        table {
-            margin: auto;
-            width: 50%;
-            padding: 10px;
-        }
-
-        .row {
-            display: flex;
-        }
-
-        .column {
-            flex: 50%;
-            padding: 10px;
-        }
-
-    </style>
-
 {% endblock %}
 
 {% block body %}
 
-    <div class="container date">
+    <div class="date">
 
-        <div class="container date_present">
+        <div class="date-present">
 
-            <a href="{% url 'alt' previous %}"><button style='font-size:24px'><i class="fa fa-arrow-left" aria-hidden="true"></i></button></a>
+            <a href="{% url 'alt' previous %}"><button id="previous"><i class="fa fa-arrow-left" aria-hidden="true"></i></button></a>
 
-            {{ date.day }}-{{ date.month }}-{{ date.year }}
+            {{ date_object.day }}-{{ date_object.month }}-{{ date_object.year }}
 
-            <a href="{% url 'alt' next %}"><button style='font-size:24px'><i class="fa fa-arrow-right" aria-hidden="true"></i></button></a>
+            <a href="{% url 'alt' next %}"><button id="next"><i class="fa fa-arrow-right" aria-hidden="true"></i></button></a>
 
         </div>
 
-        <br>
-
-        <div class="container date_calender">
+        <div class="date-calender">
 
             <form action="{% url 'calender' %}" method="post">
 
                 {% csrf_token %}
         
-                Datum: <input type="date" name="date">
+                Datum: <input type="date" class="datepicker" name="date">
     
                 <input type="submit" value="Kies Een Datum">
         
@@ -67,80 +38,117 @@
 
     <div class="row">
 
-        <div class="column">
+        <div class="index_column">
 
-            <div class="container table">
+            <div class="table">
 
             {% for period in periods %}
 
-                <table>
-                    {{ period.name }}
+                <table class="diary">
+
+                    <strong>{{ period.name }}</strong>
+
+                    <br>
+                    <br>
+
                     <tr>
+
                         <th>
                             Naam
                         </th>
+
                         <th>
                             Hoeveelheid
                         </th>
+
                         <th>
                             Calorie
                         </th>
+
                         <th>
                             Koolhydraten
                         </th>
+
                         <th>
                             Eiwit
                         </th>
+
                         <th>
                             Vet
                         </th>
+
                     </tr>
+
                     {% for item in period.items.all %}
+
                     <tr>
+
                         <td>
                             {{ item.product.name }}
                         </td>
+
                         <td>
                             {{ item.amount }} {{ item.product.unit }}
                         </td>
+
                         <td>
                             {{ item.calories }} 
                         </td>
+
                         <td>
                             {{ item.carbs }} 
                         </td>
+
                         <td>
                             {{ item.protein }} 
                         </td>
+
                         <td>
                             {{ item.fat }} 
                         </td>
+
                     </tr>
+
                     {% endfor %}
                     
                     <tr>
+
                         <th>
                         </th>
+
                         <th>
                         </th>
+
                         {% for value in period.nutrition %}
-                        <th>
-                            Totaal
-                        </th>
+
+                            <th>
+                                Totaal
+                            </th>
+
                         {% endfor %}
+                    
                     </tr>
+
                     <tr>
+
                         <td>
                         </td>
+
                         <td>
                         </td>
+
                         {% for value in period.nutrition %}
-                        <td>
-                            {{ value }}
-                        </td>
+
+                            <td>
+                                {{ value }}
+                            </td>
+
                         {% endfor %}
+
                     </tr>
+
                 </table>
+
                 <br>
 
             {% endfor %}  
@@ -149,39 +157,31 @@
 
         </div>
 
-        <div class="column">
+        <div class="index_column">
 
-            <div class="container daily_summary">
+            <div class="daily_summary">
 
-                Dag Overzicht
-
-                <br>
-                <br>
-
-                Calorieën: {{ total_calories }}
+                <strong>Dag Overzicht</strong>
 
                 <br>
                 <br>
 
-                Koolhydraten: {{ total_carbs }} gram
+                {% for total in totals %}
 
-                <br>
-                <br>
+                    {{ total }}
 
-                Eiwitten: {{ total_protein }} gram
+                    <br>
+                    <br>
 
-                <br>
-                <br>
-
-                Vet: {{ total_fat }} gram
+                {% endfor %}
 
             </div>
 
-            <div class="container add_button">
+            <div class="add_button">
 
                 <br>
 
-                <a href="{% url 'search' alt_date %}"><i class="fa fa-plus-circle" style="font-size:48px;color:green"></i></a>
+                <a href="{% url 'search' date %}"><i class="fa fa-plus-circle" style="font-size:48px;color:green"></i></a>
             
                 <br>
         

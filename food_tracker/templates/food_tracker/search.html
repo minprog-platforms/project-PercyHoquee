@@ -3,17 +3,43 @@
 {% block body %}
 
     {% if date %}
-    <form action="{% url 'results' date %}" method="post">
-        {% csrf_token %}
-        <input class="search" type="text" name="q" placeholder="Zoek Product Of Gerecht">
-    </form>
-    <br>
-    <a href="{% url 'favorites' %}">Toon Favorieten</a>
+
+        <div class="search_div">
+
+            <div id="show_favorites">
+
+                <a href="{% url 'favorites' %}">Toon Favorieten</a>
+
+            </div>
+
+            <form class="search_form" action="{% url 'results' date %}" method="post">
+        
+                {% csrf_token %}
+            
+                <input class="search" type="text" name="q" placeholder="Zoek Product Of Gerecht">
+
+                <input type="submit" value="Zoek">
+
+            </form>
+
+        </div>
+
     {% else %}
-    <form action="{% url 'meal_results' meal.id %}" method="post">
-        {% csrf_token %}
-        <input class="search" type="text" name="q" placeholder="Zoek Product">
-    </form>
+
+        <div class="search_div">
+
+            <form class="search_form" action="{% url 'meal_results' meal.id %}" method="post">
+        
+                {% csrf_token %}
+            
+                <input class="search" type="text" name="q" placeholder="Zoek Product">
+
+                <input type="submit" value="Zoek">
+        
+            </form>
+
+        </div>
+
     {% endif %}
 
 {% endblock %}

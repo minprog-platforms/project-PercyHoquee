@@ -2,13 +2,33 @@
 
 {% block body %} 
 
+    <div class="header">
+
+        <strong>
+
+            {{ meal.name }}
+
+        </strong>
+
+    </div>
+
+    <div class="preferences">
+
+        <a href="{% url 'default' meal.id date %}">Stel Voorkeur In</a>
+
+        <br>
+        
+        <a href="{% url 'get_default' meal.id date %}">Gebruik Voorkeur</a>
+
+    </div>
+
     {% if message %}
 
         {{ message }}
 
     {% endif %}
 
-    <form action="{% url 'add_meal' meal.id date %}" method="post">
+    <form id="add_meal_form" action="{% url 'add_meal' meal.id date %}" method="post">
 
         {% csrf_token %}
 
@@ -20,9 +40,10 @@
 
                     {% if product == default.product %}
 
-                        {{ product.name }}: {{ product.unit }}
-                        <input type="text" name="{{ product.id }}" value="{{ default.amount }}">
+                        {{ product.name }}
+                        <input type="text" name="{{ product.id }}" value="{{ default.amount }}" min="0">
                         <br>
+                        {{ product.unit }}
 
                     {% endif %}
 
@@ -30,8 +51,8 @@
 
             {% else %}
 
-                {{ product.name }}: {{ product.unit }}
-                <input type="text" name="{{ product.id }}">
+                {{ product.name }} ({{ product.unit }})
+                <input type="text" name="{{ product.id }}" min="0"> 
                 <br>
 
             {% endif %}
@@ -42,23 +63,22 @@
 
         {% endfor %}
 
-        <br>
+        <label for="breakfast">Breakfast</label>
         <input type="radio" id="breakfast" name="period" value="breakfast">
-        <label for="breakfast">Breakfast</label><br>
-        <input type="radio" id="lunch" name="period" value="lunch">
-        <label for="lunch">Lunch</label><br>
-        <input type="radio" id="dinner" name="period" value="dinner">
-        <label for="dinner">Dinner</label><br>
-        <input type="radio" id="snacks" name="period" value="snacks">
-        <label for="snacks">Snacks</label><br>
 
+        <label for="lunch">Lunch</label>
+        <input type="radio" id="lunch" name="period" value="lunch">
+        
+        <label for="dinner">Dinner</label>
+        <input type="radio" id="dinner" name="period" value="dinner">
+        
+        <label for="snacks">Snacks</label>
+        <input type="radio" id="snacks" name="period" value="snacks">
+
+        <br>
+        
         <input type="submit" value="Voeg Toe">
 
     </form>
-    <br>
-
-    <a href="{% url 'default' meal.id date %}">Stel Voorkeur In</a>
-    <br>
-    <a href="{% url 'get_default' meal.id date %}">Gebruik Voorkeur</a>
 
 {% endblock %}

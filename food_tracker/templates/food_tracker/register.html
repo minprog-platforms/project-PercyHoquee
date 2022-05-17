@@ -2,26 +2,34 @@
 
 {% block body %}
 
-    <h2>Register</h2>
+    <h2>Registreer</h2>
 
     {% if message %}
+
         <div>{{ message }}</div>
+
     {% endif %}
 
     <form action="{% url 'register' %}" method="post">
+
         {% csrf_token %}
+
         <div class="form-group">
-            <input class="form-control" autofocus type="text" name="username" placeholder="Username">
+            <input class="form-control" autofocus type="text" name="username" placeholder="Gebruikersnaam">
         </div>
+
         <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password">
+            <input class="form-control" type="password" name="password" placeholder="Wachtwoord">
         </div>
+
         <div class="form-group">
-            <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
+            <input class="form-control" type="password" name="confirmation" placeholder="Bevestig Wachtwoord">
         </div>
-        <input class="btn btn-primary" type="submit" value="Register">
+
+        <input class="btn btn-primary" type="submit" value="Registreer">
+
     </form>
 
-    Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+    Al een account aangemaakt? <a href="{% url 'login' %}">Log hier in.</a>
 
 {% endblock %}

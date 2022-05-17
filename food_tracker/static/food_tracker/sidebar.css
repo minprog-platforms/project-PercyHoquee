@@ -1,0 +1,45 @@
+*{
+    padding: 0px;
+    margin: 0px;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+
+.checkbtn-side{
+    font-size: 30px;
+    color: black;
+    float: right;
+    line-height: 80px;
+    margin-right: 40px;
+    cursor: pointer;
+    display: none;
+}
+
+.fas{
+    line-height: 80px;
+}
+
+#check-side{
+    display: none;
+}
+
+@media (max-width: 550px){
+    .checkbtn-side{
+        display: block;
+    }
+    .slide-side{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        background: #568203;
+        top: 160px;
+        left: -100%;
+        text-align: center;
+        transition: all .5s;
+    }
+    #check-side:checked ~ .slide-side{
+        left: 0;
+    }
+}
+

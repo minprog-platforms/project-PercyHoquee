@@ -1,51 +1,54 @@
-<!DOCTYPE html>
+{% load static %}
 <html lang="en">
-    <head>
-        {% block head %}
-        {% endblock %}
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <title>
-            Food Tracker
-        </title>
-    </head>
-    <body>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <span class="navbar-brand mb-0 h1">
-                Food Tracker
-            </span>
-            <div class="collapse navbar-collapse">
-              <ul class="navbar-nav">
-                {% if user.is_authenticated %}
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'index' %}">Home</a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'my_meals' %}">Mijn Gerechten</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'new_product' %}">Nieuw Product</a>
-                </li>
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'new_meal' %}">Nieuw Gerecht</a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'logout' %}">Log Uit</a>
-                </li>
-                {% else %}
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'index' %}">Home</a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'login' %}">Login</a>
-                </li>
-                <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'register' %}">Register</a>
-                </li>
-                {% endif %}
-              </ul>
-            </div>
-          </nav>
+  <head>
+    {% block head %}
+    {% endblock %}
+    <title>
+        Food Tracker
+    </title>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <link href="{% static 'food_tracker/style.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container">
+      <nav>
+        <input type="checkbox" class="check" id="check">
+        <label for="check" class="checkbtn" id="checkbtn-nav">
+          <i class="fas fa-bars"></i>
+        </label>
+        <label class="logo">FoodTracker</label>
+        <ul>
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'my_meals' %}">Mijn Gerechten</a></li>
+          <li><a href="{% url 'new_product' %}">Nieuw Product</a></li>
+          <li><a href="{% url 'new_meal' %}">Nieuw Gerecht</a></li>
+          <li><a href="{% url 'logout' %}">Log Uit</a></li>
+          {% else %}
+          <li><a href="{% url 'index' %}">Home</a></li>
+          <li><a href="{% url 'login' %}">Login</a></li>
+          <li><a href="{% url 'register' %}">Registreer</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+      <main>
         {% block body %}
         {% endblock %}
-    </body>
+      </main>
+      <div class="sidebar">
+        <label class="logo">Help</label>
+        <input type="checkbox" class="check" id="check-side">
+        <label for="check-side" class="checkbtn" id="checkbtn-side">
+            <i class="fas fa-question"></i>
+        </label>
+        <div class="slide-side">
+            <p>
+                {% block help %}
+                {% endblock %}
+            </p>
+        </div>
+      </div>
+      <footer>Deze website is ontwikkeld voor de minor Programmeren, vak ... door Percy Hoquee</footer>
+    </div>
+  </body>
 </html>

@@ -4,64 +4,113 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <style>
+
+        .container {
+            margin: auto;
+            width: 200px;
+            padding: 10px;
+            border-radius: 25px;
+            text-align: center;
+            border: 1px solid black;
+        }
+
+        .column {
+            flex: 50%;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .column_product {
+            margin: auto;
+            width: 300px;
+            padding: 10px;
+            border-radius: 25px;
+            border: 1px solid black;
+        }
+
+    </style>
+
 {% endblock %}
 
 {% block body %} 
 
-    {{ meal.name }}
+    <div class="header">
+
+        {{ meal.name }}
+
+    </div>
 
     <br>
 
-    {% for product in meal.product.all %}
+    <div class="row">
 
-        {{ product.name }}
+        <div class="column">
 
-        <ul>
+            <div class="row">
 
-            Per 100 {{ product.unit }} :
+                <div class="column_product">
 
-            <li>
+                    <div class="container results_product">
 
-                {{ product.calories }} Calorieën 
+                        Producten
 
-            </li>
+                    </div>
 
-            <li>
+                    <br>
 
-                {{ product.carbs }} Koolhydraten
+                    {% for product in meal.product.all %}
 
-            </li>
+                        <div class="container product">
 
-            <li>
+                            <div class="row">
 
-                {{ product.protein }} Eiwitten
+                                <div class="thirds">
 
-            </li>
+                                </div>
 
-            <li>
+                                <div class="thirds">
 
-                {{ product.fat }} Vet
+                                    {{ product.name }}
 
-            </li>
+                                </div>
 
-        </ul>
+                                <div class="thirds">
 
-        <a href="{% url 'meal_delete_product' meal.id product.id %}"><i class="fa fa-times" aria-hidden="true" style="color:red"></i></a>
+                                    <a href="{% url 'meal_delete_product' meal.id product.id %}"><i class="fa fa-times" aria-hidden="true" style="color:red"></i></a>
 
-        <br>
+                                </div>
 
-    {% empty %}
+                            </div>
 
-        Dit Gerecht Bevat Momenteel Geen Producten. Voeg Hieronder Producten Toe.
+                        </div> 
 
-    {% endfor %}
+                        <br>
+
+                    {% empty %}
+
+                        Dit Gerecht Bevat Momenteel Geen Producten. Voeg Hieronder Producten Toe.
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
 
     <br>
 
-    <a href="{% url 'meal_search' meal.id %}">Voeg Product Toe Aan Gerecht</a>
+        <div class="column">
 
-    <br>
+            <a href="{% url 'meal_search' meal.id %}">Voeg Product Toe Aan Gerecht</a>
 
-    <a href="{% url 'my_meals' %}">Bevestig Gerecht</a>
+            <br>
+
+            <a href="{% url 'my_meals' %}">Bevestig Gerecht</a>
+
+        </div>
+
+    </div>
 
 {% endblock %}

@@ -1,10 +1,31 @@
 {% extends "food_tracker/results_layout.html" %}
 
+{% block header %}
+
+    <div class="header">
+
+        Zoekresultaten voor "{{ query }}"
+
+    </div>
+
+{% endblock %}
+
+{% block back_to_search %}
+
+    <div id="back">
+
+        <a href="{% url 'meal' meal.id %}">Terug</a>
+
+    </div>
+
+{% endblock %}
+
+
 {% block add_product_link %}
 
     {% if product in meal.product.all %}
 
-        Product Is Al Toegevoegd Aan <a href="{% url 'meal' meal.id %}">Gerecht</a>
+        Toegevoegd
 
     {% else %}
 
@@ -16,7 +37,7 @@
 
 {% block if_products_empty %}
 
-    Geen resultaten. Ga <a href="{% url 'meal' meal.id %}">Terug</a>"
+    Geen resultaten.
 
 {% endblock %}
 

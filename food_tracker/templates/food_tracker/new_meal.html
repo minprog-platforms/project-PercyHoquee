@@ -1,8 +1,17 @@
 {% extends "food_tracker/layout.html" %}
 
 {% block body %} 
-<form action="{% url 'new_meal' %}" method="post">
-    {% csrf_token %}
-    {{ form }}
-</form>
+
+    <form class="date_form" action="{% url 'new_meal' %}" method="post">
+
+        {% csrf_token %}
+
+        <label for="name">Gerecht Naam:</label>
+
+        <input type="text" id="name" name="name">
+
+        <input type="submit" value="Bevestig">
+        
+    </form>
+
 {% endblock %}  
