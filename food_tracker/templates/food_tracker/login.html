@@ -1,31 +1,45 @@
 {% extends "food_tracker/layout.html" %}
+{% load static %}
+
+{% block head %}
+    <link href="{% static 'food_tracker/form.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block body %}
-
-    <h2>Login</h2>
-
-    {% if message %}
-
-        <div>{{ message }}</div>
-
-    {% endif %}
-
-    <form action="{% url 'login' %}" method="post">
-
-        {% csrf_token %}
-
-        <div class="form-group">
-            <input autofocus class="form-control" type="text" name="username" placeholder="Gebruikersnaam">
+    <div class="center-form">
+        <div class="center">
+            <h3>
+                Login
+            </h3>
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <div class="txt_field">
+                    <input type="text" name="username" required>
+                    <span></span>
+                    <label>Gebruikersnaam</label>
+                </div>
+                <div class="txt_field">
+                    <input type="password" name="password" required>
+                    <span></span>
+                    <label>Wachtwoord</label>
+                </div>
+                <input type="submit" value="Login">
+                <div class="signup_link">
+                    Nog Geen Account? <a href="{% url 'register' %}">Registreer Hier.</a>
+                </div>
+            </form>
+            {% if message %}
+                <div class="margined-div">
+                    {{ message }}
+                </div>
+            {% endif %}
         </div>
+    </div>
+{% endblock %}
 
-        <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Wachtwoord">
-        </div>
-
-        <input class="btn btn-primary" type="submit" value="Login">
-
-    </form>
-
-    Nog Geen Account? <a href="{% url 'register' %}">Registreer Hier.</a>
-
+{% block help %}
+    <p class="sentence">1. Vul uw gebruikersnaam en wachtwoord in in de daarvoor bestemde velden.</p>
+    <p class="sentence">2. Login door te klikken op de knop "Login".</p>
+    <p class="sentence">3. Als u iets onjuist heeft ingevuld, krijgt u daar een melding van te zien.</p>
+    <p class="sentence bottom">4. Heeft u nog geen account of bent u uw gegevens vergeten? Klik dan op de link onderaan.</p>
 {% endblock %}

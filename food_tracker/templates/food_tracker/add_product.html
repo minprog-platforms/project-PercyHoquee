@@ -1,40 +1,41 @@
 {% extends "food_tracker/layout.html" %}
+{% load static %}
+
+{% block head %}
+    <link href="{% static 'food_tracker/form.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block body %} 
-
-    <div class="header">
-
-        <strong>
-
-            {{ product.name }}
-
-        </strong>
-
+    <h1>
+        {{ product.name }}
+    </h1>
+    <div class="margined-div">
+        <a href="{% url 'product_specify_date' product.id %}">
+            <button class="dir-btn">
+                Terug naar datum selecteren
+            </button>
+        </a>
     </div>
-
-    <form id="add_product_form" method="post">
-
+    <form class="structured-form" method="post">
         {% csrf_token %}
-
         <label for="amount">Hoeveelheid ({{ product.unit }})</label>
-        <input type="number" id="amount" name="amount" min="0"><br>
-        
+        <input type="number" id="amount" name="amount" min="0">
         <label for="breakfast">Breakfast</label>
-        <input type="radio" id="breakfast" name="period" value="breakfast">
-
+        <input type="radio" id="breakfast" name="period" value="breakfast" checked>
         <label for="lunch">Lunch</label>
         <input type="radio" id="lunch" name="period" value="lunch">
-        
         <label for="dinner">Dinner</label>
         <input type="radio" id="dinner" name="period" value="dinner">
-        
         <label for="snacks">Snacks</label>
         <input type="radio" id="snacks" name="period" value="snacks">
-
-        <br>
-
-        <input type="submit" value="Voeg Toe">
-
+        <input class="structured-btn" type="submit" value="Voeg Toe">
     </form>
-
 {% endblock %}  
+
+{% block help %}
+    <p class="sentence">1. Vul de hoeveelheid in voor het product.</p>
+    <p class="sentence">2. De hoeveelheid die u invult moet minimaal 0 zijn.</p>
+    <p class="sentence">3. Kies dan tijdens welke periode van de dag u het product heeft geconsumeerd.</p>
+    <p class="sentence">4. Voeg vervolgens het product toe aan uw dagboek door te klikken op de "voeg toe" knop.</p>
+    <p class="sentence bottom">5. Wilt u het product toevoegen op een andere datum dan degene die u nu heeft gekozen, klik dan op de "terug naar datum selecteren knop" om een nieuwe datum te kiezen.</p>
+{% endblock %}

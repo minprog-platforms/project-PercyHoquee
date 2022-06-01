@@ -1,0 +1,29 @@
+{% extends "food_tracker/layout.html" %}
+{% load static %}
+
+{% block head %}
+    <link href="{% static 'food_tracker/form.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    {% block header %}
+    {% endblock %}
+
+    <div class="center-form">
+        {% block form %}  
+        {% endblock %}
+            {% csrf_token %}
+            <input type="date" class="datepicker" id="specify" name="date">
+            <button class="date-btn" type="submit">
+                <i class="fa fa-check"></i>
+            </button>
+        </form>
+    </div>
+{% endblock %}
+
+{% block help %}
+    <p class="sentence">1. U bent bezig een product of gerecht toe te voegen aan uw dagboek.</p>
+    <p class="sentence">2. Selecteer eerst via de kalender een datum waarop u het product/gerecht wilt toevoegen.</p>
+    <p class="sentence">3. Klik op het vinkje om de datum te bevestigen.</p>
+    <p class="sentence bottom">4. Als u niks invult en bevestigd, wordt de pagina opnieuw geladen.</p>
+{% endblock %}

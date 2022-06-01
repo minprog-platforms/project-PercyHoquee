@@ -1,84 +1,71 @@
 {% extends "food_tracker/layout.html" %}
+{% load static %}
+
+{% block head %}
+    <link href="{% static 'food_tracker/form.css' %}" rel="stylesheet">
+{% endblock %}
 
 {% block body %} 
-
-    <div class="header">
-
-        <strong>
-
-            {{ meal.name }}
-
-        </strong>
-
-    </div>
-
-    <div class="preferences">
-
-        <a href="{% url 'default' meal.id date %}">Stel Voorkeur In</a>
-
+    <h1>
+        {{ meal.name }}
+    </h1>
+    <div class="margined-div">
+        <a href="{% url 'meal_specify_date' meal.id %}">
+            <button class="dir-btn">
+                Terug naar datum selecteren
+            </button>
+        </a>
+        <a href="{% url 'get_default' meal.id date %}">
+            <button class="dir-btn">
+                Gebruik voorkeur
+            </button>
+        </a>
+        <a href="{% url 'default' meal.id date %}">
+            <button class="dir-btn">
+                Stel voorkeur in
+            </button>
+        </a>
         <br>
-        
-        <a href="{% url 'get_default' meal.id date %}">Gebruik Voorkeur</a>
-
+        {% if message %}
+            {{ message }}
+        {% endif %}
     </div>
-
-    {% if message %}
-
-        {{ message }}
-
-    {% endif %}
-
-    <form id="add_meal_form" action="{% url 'add_meal' meal.id date %}" method="post">
-
+    <form class="structured-form" action="{% url 'add_meal' meal.id date %}" method="post">
         {% csrf_token %}
-
         {% for product in meal.product.all %}
-
+            <!--Attempt to use preference amounts-->
             {% if product in products %}
-
                 {% for default in defaults %}
-
                     {% if product == default.product %}
-
-                        {{ product.name }}
-                        <input type="text" name="{{ product.id }}" value="{{ default.amount }}" min="0">
-                        <br>
-                        {{ product.unit }}
-
+                        <label for="preference">{{ product.name }} ({{ product.unit }})</label>
+                        <input id="preference" type="number" name="{{ product.id }}" value="{{ default.amount }}" min="0">
                     {% endif %}
-
                 {% endfor %}
-
             {% else %}
-
-                {{ product.name }} ({{ product.unit }})
-                <input type="text" name="{{ product.id }}" min="0"> 
-                <br>
-
+                <label for="amount">{{ product.name }} ({{ product.unit }})</label>
+                <input id="amount" type="number" name="{{ product.id }}" min="0"> 
             {% endif %}
-
         {% empty %}
-
-            Dit Gerecht Bevat Momenteel Geen Producten. Klik <a href="{% url 'search' date %}">Hier</a> Om Opnieuw Te Zoeken.
-
+            Dit gerecht bevat momenteel geen producten. Klik <a href="{% url 'search' date %}">hier</a> om opnieuw te zoeken.
         {% endfor %}
-
         <label for="breakfast">Breakfast</label>
-        <input type="radio" id="breakfast" name="period" value="breakfast">
-
+        <input type="radio" id="breakfast" name="period" value="breakfast" checked>
         <label for="lunch">Lunch</label>
         <input type="radio" id="lunch" name="period" value="lunch">
-        
         <label for="dinner">Dinner</label>
         <input type="radio" id="dinner" name="period" value="dinner">
-        
         <label for="snacks">Snacks</label>
         <input type="radio" id="snacks" name="period" value="snacks">
-
-        <br>
-        
-        <input type="submit" value="Voeg Toe">
-
+        <input class="structured-btn" type="submit" value="Voeg Toe">
     </form>
+{% endblock %}
 
+{% block help %}
+    <p class="sentence">1. Vul de hoeveelheden in voor elk product in het gerecht.</p>
+    <p class="sentence">2. De hoeveelheid die u invult moet minimaal 0 zijn.</p>
+    <p class="sentence">3. Kies dan tijdens welke periode van de dag u het gerecht heeft geconsumeerd.</p>
+    <p class="sentence">4. Voeg vervolgens het gerecht toe aan uw dagboek door te klikken op de "voeg toe" knop.</p>
+    <p class="sentence">5. Als u vaak dezelfde hoeveelheden gebruikt, vul dan uw voorkeuren in via de "stel voorkeur in" knop.</p>
+    <p class="sentence">6. Gebruik deze voorkeuren dan via de "gebruik voorkeur" knop.</p>
+    <p class="sentence bottom">7. Wilt u het gerecht toevoegen op een andere datum dan degene die u nu heeft gekozen, klik dan op de "terug naar datum selecteren knop" om een nieuwe datum te kiezen.</p>
 {% endblock %}

@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.db.models.fields import CharField, IntegerField, DateField, PositiveIntegerField
 from django.db.models.fields.related import ForeignKey, ManyToManyField, OneToOneField
+
 from . import helperfunctie
 
 

@@ -1,211 +1,104 @@
 {% extends "food_tracker/layout.html" %}
+{% load static %}
 
 {% block head %}
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <style>
-
-        {% if products %}
-
-            {% if meals %}
-
-                .left {
-                    margin-left: auto;
-                    margin-right: 50px;
-                    width: 300px;
-                    padding: 10px;
-                    border-radius: 25px;
-                }
-
-                .right {
-                    margin-left: 50px;
-                    margin-right: auto;
-                    width: 300px;
-                    padding: 10px;
-                    border-radius: 25px;
-                }
-
-            {% else %}
-
-                .column {
-                    margin: auto;
-                    width: 300px;
-                    padding: 10px;
-                    border-radius: 25px;
-                }
-
-            {% endif %}
-
-        {% else %}
-
-            .column {
-                margin: auto;
-                width: 300px;
-                padding: 10px;
-                border-radius: 25px;
-            }
-
-        {% endif %}
-
-    </style>
-
+    <link href="{% static 'food_tracker/results.css' %}" rel="stylesheet">
 {% endblock %}
 
 {% block body %}
-
     {% block header %}
     {% endblock %}
 
-    {% block back_to_search %}
+    {% block back_to %}
     {% endblock %}
 
-    <div class="row">
-
+    <div class="container-results">
         {% if products %}
-
-        <div class="column left">
-
-            <div class="results_container results_product">
-
+        <div class="products">
+            <h2>
                 Producten
-
-            </div>
-
-            <br>
-
-            {% for product in products %}
-
-                <div class="results_container product">
-
-                    <div class="row">
-
-                        <div class="thirds">
-
-                            
-
-                        </div>
-
-                        <div class="thirds">
-
-                            {{ product.name }}
-
-                        </div>
-
-                        <div class="thirds">
-
-                            {% if product in favorites %}
-
-                                <a href="{% url 'delete_product_favorite' product.id %}"><span class="fa fa-star checked"></span></a>
-
-                            {% else %}
-
-                                <a href="{% url 'add_product_favorite' product.id %}"><span class="fa fa-star"></span></a>
-
-                            {% endif %}
-
-                            {% if product.creator == user %}
-
-                                <i class="fa fa-key"></i>
-
-                            {% endif %}
-
-                            <a href="{% url 'faulty_product' product.id %}"><i class="fa fa-exclamation-circle" style="color:red"></i></a>
-
-                        </div>
-
-                    </div>
-
+            </h2>
+            <div class="wrapper-grid">
+                {% for product in products %}
+                <div class="container-cards">
+                    <div class="banner"></div>
+                    {% if product.unit == 'gr.' %}
+                    <img src="{% static 'docs/appel.jpg' %}" alt="image" class="food-img">
+                    {% else %} 
+                    <img src="{% static 'docs/melk.webp' %}" alt="image" class="food-img">
+                    {% endif %}
+                    <h1 class="name">
+                        {{ product.name }}
+                    </h1>
+                    <p class="icons">
+                        {% if product in favorites %}
+                            <a href="{% url 'delete_product_favorite' product.id %}"><i class="fa fa-star checked"></i></a>
+                        {% else %}
+                            <a href="{% url 'add_product_favorite' product.id %}"><i class="fa fa-star"></i></a>
+                        {% endif %}
+                        {% if product.creator == user %}
+                            <i class="fa fa-key"></i>
+                        {% endif %}
+                        <a href="{% url 'faulty_product' product.id %}"><i class="fa fa-exclamation-circle"></i></a>
+                    </p>
+                    <ul>
+                        <li>Per 100 {{ product.unit }}</li>
+                        <li>{{ product.calories }} kcal</li>
+                        <li>{{ product.carbs }} gram koolhydraten</li>
+                        <li>{{ product.protein }} gram eiwit</li>
+                        <li>{{ product.fat }} gram vet</li>
+                    </ul>
                     {% block add_product_link %}
                     {% endblock %}
-
                 </div>
-
-            {% empty %}
-
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
             {% block if_products_empty %}
             {% endblock %}
-
-            {% endfor %}
-
-        </div>
-
         {% endif %}
-
         {% if meals %}
-
-        <div class="column right">
-
-            <div class="results_container results_meal">
-
+        <div class="meals">
+            <h2>
                 Gerechten
-
-            </div>
-
-            <br>
-
-            {% for meal in meals %}
-
-                <div class="results_container meal">
-
-                    <div class="row">
-
-                        <div class="thirds">
-
-
-
-                        </div>
-
-                        <div class="thirds">
-
-                            {{ meal.name }}
-
-                        </div>
-
-
-                        <div class="thirds">
-
-                            {% if meal in favorites %}
-
-                                <a href="{% url 'delete_meal_favorite' meal.id %}"><span class="fa fa-star checked"></a>
-
-                            {% else %}
-
-                                <a href="{% url 'add_meal_favorite' meal.id %}"><span class="fa fa-star"></a>
-
-                            {% endif %}
-
-                            {% if meal.creator == user %}
-
-                                <i class="fa fa-key"></i>
-
-                            {% endif %}
-
-                        </div>
-
-                    </div>
-
-                {% block add_meal_link %}
-                {% endblock %}
-                    
-                <br>
-
-                {% block extra %}
-                {% endblock %}
-
+            </h2>
+            <div class="wrapper-grid">
+                {% for meal in meals %}
+                <div class="container-cards">
+                    <div class="banner"></div>
+                    <img src="{% static 'docs/schijf_van_vijf.jfif' %}" alt="image" class="food-img">
+                    <h1 class="name">{{ meal.name }}</h1>
+                    <p class="icons">
+                        {% if meal in favorites %}
+                            <a href="{% url 'delete_meal_favorite' meal.id %}"><i class="fa fa-star checked"></i></a>
+                        {% else %}
+                            <a href="{% url 'add_meal_favorite' meal.id %}"><i class="fa fa-star"></i></a>
+                        {% endif %}
+                        {% if meal.creator == user %}
+                            <i class="fa fa-key"></i>
+                        {% endif %}
+                        {% block extra %}
+                        {% endblock %}
+                    </p>
+                    {% block add_meal_link %}
+                    {% endblock %}
                 </div>
-
-            {% empty %}
-
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
             {% block if_meals_empty %}
             {% endblock %}
-
-            {% endfor %}
-
-        </div>
-
         {% endif %}
-
     </div>
+{% endblock %}
 
+{% block help %}
+    <p class="sentence">1. Een goude ster betekent een favoriet product/gerecht. Klik op een goude ster om een product/gerecht te verwijderen als favoriet.</p> 
+    <p class="sentence">2. Een blauwe ster betekent een non-favoriet product/gerecht. Klik op een blauwe ster om een product/gerecht te markeren als favoriet.</p>
+    <p class="sentence">3. (optioneel) Een sleutel betekent dat een product/gerecht door u is gecreëerd.</p>
+    <p class="sentence">4. (optioneel) Klik op het uitroepteken om een foutief product te melden bij de administrator.</p>
+    <p class="sentence">5. Klik op de knop "voeg toe aan dagboek/gerecht" om toe te voegen naar uw wens.</p>
+    <p class="sentence bottom">6. (optioneel) Gebruik de knoppen bovenaan voor de functionaliteit die erop aangegeven staat.</p>
 {% endblock %}
