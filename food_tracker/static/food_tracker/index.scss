@@ -26,10 +26,12 @@
     th{
         background: $primary;
         color: white;
-        width: 100px;
+        width: 140px;
+        padding: 3px;
     }
     td{
         background: $secondary;
+        padding: 3px;
     }
     .total{
         border-bottom: 2px solid black;

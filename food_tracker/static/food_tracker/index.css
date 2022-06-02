@@ -15,6 +15,10 @@ button, input[type=radio], input[type=date] {
   cursor: pointer;
 }
 
+.added {
+  cursor: default;
+}
+
 .checked {
   color: gold;
 }
@@ -33,14 +37,37 @@ button, input[type=radio], input[type=date] {
           transform: translate(-50%, -50%);
 }
 
+.dir-btn {
+  background: black;
+  color: #F8F8F8;
+}
+
+.dir-btn:hover {
+  background: purple;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
 .fa-plus-circle {
   font-size: 48px;
   color: black;
 }
 
+.fa-plus-circle:hover {
+  color: purple;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
 .fa-plus, .fa-check {
   font-size: 24px;
   color: black;
+}
+
+.fa-plus:hover, .fa-check:hover {
+  color: purple;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
 }
 
 .fa-times, .fa-exclamation-circle {
@@ -82,11 +109,13 @@ button, input[type=radio], input[type=date] {
 .table th {
   background: purple;
   color: white;
-  width: 100px;
+  width: 140px;
+  padding: 3px;
 }
 
 .table td {
   background: silver;
+  padding: 3px;
 }
 
 .table .total {

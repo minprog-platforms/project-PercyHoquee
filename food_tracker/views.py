@@ -144,7 +144,8 @@ def search(request, date):
     Allows user to search for products and/or meals
     """
     return render(request, "food_tracker/search.html", {
-        "date": helperfunctie.reverse_date(date),
+        "date": date,
+        "alt_date": helperfunctie.reverse_date(date),
     })
 
 
@@ -201,24 +202,10 @@ def add_product(request, date, product_id):
 
             instant_periods(entry)
         product = Product.objects.get(id=product_id)
+        period = request.POST["period"]
 
         # Add product to the requested period of the day
-        if request.POST["period"] == "breakfast":
-            new = ProductInstance(breakfast_item=entry.breakfast,
-                                  product=product, amount=amount)
-            new.save()
-        elif request.POST["period"] == "lunch":
-            new = ProductInstance(lunch_item=entry.lunch,
-                                  product=product, amount=amount)
-            new.save()
-        elif request.POST["period"] == "dinner":
-            new = ProductInstance(dinner_item=entry.dinner,
-                                  product=product, amount=amount)
-            new.save()
-        else:
-            new = ProductInstance(snack_item=entry.snacks,
-                                  product=product, amount=amount)
-            new.save()
+        add_period(period, entry, product, amount)
         return HttpResponseRedirect(reverse("alt", args=(date,)))
     else:
         return render(request, "food_tracker/add_product.html", {
@@ -240,6 +227,7 @@ def add_meal(request, meal_id, date):
 
             instant_periods(entry)
         meal = Meal.objects.get(id=meal_id)
+        period = request.POST["period"]
 
         # Adds each product to the requested period of the day
         for product in meal.product.all():
@@ -247,22 +235,7 @@ def add_meal(request, meal_id, date):
             if amount == '':
                 return HttpResponseRedirect(reverse("add_meal",
                                                     args=(meal_id, date,)))
-            if request.POST["period"] == "breakfast":
-                new = ProductInstance(breakfast_item=entry.breakfast,
-                                      product=product, amount=amount)
-                new.save()
-            elif request.POST["period"] == "lunch":
-                new = ProductInstance(lunch_item=entry.lunch,
-                                      product=product, amount=amount)
-                new.save()
-            elif request.POST["period"] == "dinner":
-                new = ProductInstance(dinner_item=entry.dinner,
-                                      product=product, amount=amount)
-                new.save()
-            else:
-                new = ProductInstance(snack_item=entry.snacks,
-                                      product=product, amount=amount)
-                new.save()
+            add_period(period, entry, product, amount)
         return HttpResponseRedirect(reverse("alt", args=(date,)))
     else:
         return render(request, "food_tracker/add_meal.html", {
@@ -611,3 +584,26 @@ def instant_periods(entry):
 
     snacks = Snacks(entry=entry)
     snacks.save()
+
+
+def add_period(period, entry, product, amount):
+    """
+    Adds a product to a period of the day
+    """
+    if period == "breakfast":
+        new = ProductInstance(breakfast_item=entry.breakfast,
+                              product=product, amount=amount)
+        new.save()
+    elif period == "lunch":
+        new = ProductInstance(lunch_item=entry.lunch,
+                              product=product, amount=amount)
+        new.save()
+    elif period == "dinner":
+        new = ProductInstance(dinner_item=entry.dinner,
+                              product=product, amount=amount)
+        new.save()
+    else:
+        new = ProductInstance(snack_item=entry.snacks,
+                              product=product, amount=amount)
+        new.save()
+    return
