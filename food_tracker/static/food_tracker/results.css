@@ -15,6 +15,10 @@ button, input[type=radio], input[type=date] {
   cursor: pointer;
 }
 
+.added {
+  cursor: default;
+}
+
 .checked {
   color: gold;
 }
@@ -57,6 +61,7 @@ button, input[type=radio], input[type=date] {
 
 .fa-plus, .fa-check {
   font-size: 24px;
+  font-weight: 700;
   color: black;
 }
 
