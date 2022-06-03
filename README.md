@@ -8,5 +8,5 @@ Gebruikers krijgen vervolgens een overzicht te zien van hun dagelijkse voeding m
 ## Authors
 - [@Percy Hoquee](https://github.com/PercyHoquee)
 
-![Food Tracker](doc/index.jpeg)
-![Food Tracker](doc/results.jpeg)
+![Food Tracker](doc/index.png)
+![Food Tracker](doc/results.png)
