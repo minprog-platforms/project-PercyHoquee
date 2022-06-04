@@ -61,7 +61,6 @@ button, input[type=radio], input[type=date] {
 
 .fa-plus, .fa-check {
   font-size: 24px;
-  font-weight: 700;
   color: black;
 }
 
@@ -156,11 +155,11 @@ main {
   line-height: 80px;
 }
 
-.sidebar .sentence {
+.sentence {
   padding: 3px 15px;
 }
 
-.sidebar .bottom {
+.bottom {
   padding-bottom: 10px;
 }
 
