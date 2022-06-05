@@ -25,3 +25,5 @@ Code:
 - project-PercyHoquee/food_tracker/static/food_tracker/layout.scss grid-layout, afkomstig van https://youtu.be/68O6eOGAGqA
 - project-PercyHoquee/food_tracker/static/food_tracker/layout.scss navbar & sidebar, afkomstig van https://youtu.be/oLgtucwjVII
 - project-PercyHoquee/food_tracker/static/food_tracker/results.scss lijn 3 tot en met 51, afkomstig van https://youtu.be/Aje9cXDzklk & https://youtu.be/k3YHfp8Bp_E
+- project-PercyHoquee/food_tracker/templates/food_tracker/ icons gebruikt in de html bestanden, afkomstig van https://fontawesome.com/start
+- project-PercyHoquee/food_tracker/views.py lijn 79 tot en met 139, afkomstig van Programmeerproject opdracht Commerce: https://project.mprog.nl/django/projects/commerce
