@@ -5,6 +5,9 @@ Gebruikers kunnen naar wens producten aanmaken en toevoegen aan hun voedingsdagb
 Producten kunnen ook samengevoegd worden tot gerecht voor verdere personalisering.
 Gebruikers krijgen vervolgens een overzicht te zien van hun dagelijkse voeding met daarin de waarden van hun calorie-, koolhydraat-, eiwit- en vetinname.
 
+## Belangrijk!!
+Beweeg naar de directory project-PercyHoquee/food_tracker/. Daar gekomen geef het commando "pip install -r requirements.txt" of "pip3 install -r requirements.txt" afhankelijk van welke versie u gebruikt. Requirements.txt bevat de installatie benodigd om de applicatie zowel on- als offline te kunnen gebruiken. 
+
 ## Auteurs
 - [@Percy Hoquee](https://github.com/PercyHoquee)
 
