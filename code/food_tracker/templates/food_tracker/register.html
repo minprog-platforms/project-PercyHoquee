@@ -1,0 +1,50 @@
+{% extends "food_tracker/layout.html" %}
+{% load static %}
+
+{% block head %}
+    <link href="{% static 'food_tracker/form.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+    <div class="center-form">
+        <div class="center">
+            <h3>
+                Registreer
+            </h3>
+            <form action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                <div class="txt_field">
+                    <input type="text" name="username" required>
+                    <span></span>
+                    <label>Gebruikersnaam</label>
+                </div>
+                <div class="txt_field">
+                    <input type="password" name="password" required>
+                    <span></span>
+                    <label>Wachtwoord</label>
+                </div>
+                <div class="txt_field">
+                    <input type="password" name="confirmation" required>
+                    <span></span>
+                    <label>Bevestig Wachtwoord</label>
+                </div>
+                <input type="submit" value="Registreer">
+                <div class="signup_link">
+                    Al een account aangemaakt? <a href="{% url 'login' %}">Log hier in.</a>
+                </div>
+            </form>
+            {% if message %}
+                <div class="margined-div">
+                    {{ message }}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block help %}
+    <p class="sentence">1. Vul uw gebruikersnaam en wachtwoord in in de daarvoor bestemde velden.</p>
+    <p class="sentence">2. Registreer uw account door te klikken op de knop "Registreer".</p>
+    <p class="sentence">3. Als u iets onjuist heeft ingevuld of een gebruikersnaam kiest die al in gebruik is, krijgt u daar een melding van te zien.</p>
+    <p class="sentence bottom">4. Heeft u al een account? Klik dan op de link onderaan.</p>
+{% endblock %}
