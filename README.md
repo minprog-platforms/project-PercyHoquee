@@ -16,6 +16,7 @@ Foto's:
 - project-PercyHoquee/food_tracker/static/docs/appel.jpg, afkomstig van https://www.foodandfriends.nl/app/uploads/2020/12/appel-artikel.jpg
 - project-PercyHoquee/food_tracker/static/docs/melk.webp, afkomstig van https://media.levenvanhetland.nl/1514-medium_default/melkfles-1-liter-inclusief-deksel.jpg
 - project-PercyHoquee/food_tracker/static/docs/schijf_van_vijf.jfif, afkomstig van https://www.darmgezondheid.nl/wp-content/uploads/2016/06/schijf-van-vijf-300x300.jpg
+
 Code:
 - project-PercyHoquee/food_tracker/static/food_tracker/form.scss lijn 3 tot en met 38, afkomstig van https://youtu.be/v1PeTDrw6OY
 - project-PercyHoquee/food_tracker/static/food_tracker/form.scss lijn 41 tot en met 76, afkomstig van https://youtu.be/2ACrHs5o9LM
