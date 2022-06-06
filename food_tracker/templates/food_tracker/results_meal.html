@@ -1,0 +1,41 @@
+{% extends "food_tracker/results_layout.html" %}
+
+{% block header %}
+    <h1>
+        Zoekresultaten voor "{{ query }}"
+    </h1>
+{% endblock %}
+
+{% block back_to %}
+    <div class="margined-div">
+        <a href="{% url 'meal' meal.id %}">
+            <button class="dir-btn">
+                Terug naar overzicht
+            </button>
+        </a>
+        <a href="{% url 'meal_search' meal.id %}">
+            <button class="dir-btn">
+                Nieuwe zoekopdracht
+            </button>
+        </a>
+    </div>
+{% endblock %}
+
+{% block add_product_link %}
+    {% if product in meal.product.all %}
+        <button class="btn added">Toegevoegd</button>
+    {% else %}
+        <a href="{% url 'meal_add_product' meal.id product.id %}"><button class="btn">Voeg Toe Aan Gerecht</button></a>
+    {% endif %}
+{% endblock %}
+
+{% block if_products_empty %}
+    <h2>
+        Producten
+    </h2>
+    <div class="margined-div">
+        Geen resultaten
+    </div>
+{% endblock %}
+
+

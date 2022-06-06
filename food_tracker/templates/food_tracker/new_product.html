@@ -1,0 +1,37 @@
+{% extends "food_tracker/layout.html" %}
+{% load static %}
+
+{% block head %}
+    <link href="{% static 'food_tracker/form.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %} 
+    <h2>Nieuw Product</h2>
+    <form class="structured-form" method="post">
+        {% csrf_token %}
+        <label for="name">Product Naam</label>
+        <input type="text" id="name" name="name">
+        <br>
+        <label class="radio" for="gram">gr.</label>
+        <input type="radio" id="gram" name="unit" value="gr." checked>
+        <label class="radio" for="ml">ml.</label>
+        <input type="radio" id="ml" name="unit" value="ml.">
+        <label for="calories">Calorieën</label>
+        <input type="number" id="calories" name="calories" min="0">
+        <label for="carbs">Koolhydraten</label>
+        <input type="number" id="carbs" name="carbs" min="0">
+        <label for="protein">Eiwit</label>
+        <input type="number" id="protein" name="protein" min="0">
+        <label for="fat">Vet</label>
+        <input type="number" id="fat" name="fat" min="0">
+        <input type="submit" class="structured-btn" value="Bevestig"> 
+    </form>
+{% endblock %} 
+
+{% block help %}
+    <p class="sentence">1. Geef uw nieuwe product een naam door het daarvoor bestemde veld in te vullen.</p>
+    <p class="sentence">2. Kies vervolgens in welke eenheid u uw nieuwe product wilt meten.</p>
+    <p class="sentence">3. Vul vervolgens de voedingswaarden in per 100 eenheden van de gekozen maat, dus voedingswaarden p/100 gram of p/100 ml.</p>
+    <p class="sentence">4. Bevestig uw nieuwe product door te klikken op de knop "bevestig".</p>
+    <p class="sentence bottom">5. U gaat dan terug naar de homepage waar u het product kunt toevoegen.</p>
+{% endblock %}
