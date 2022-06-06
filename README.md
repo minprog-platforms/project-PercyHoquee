@@ -6,14 +6,17 @@ Producten kunnen ook samengevoegd worden tot gerecht voor verdere personaliserin
 Gebruikers krijgen vervolgens een overzicht te zien van hun dagelijkse voeding met daarin de waarden van hun calorie-, koolhydraat-, eiwit- en vetinname.
 
 ## Belangrijk!!
-Beweeg naar de directory project-PercyHoquee/food_tracker/. Daar gekomen geef het commando "pip install -r requirements.txt" of "pip3 install -r requirements.txt", afhankelijk van welke versie u gebruikt. Requirements.txt bevat de installatie benodigd om de applicatie zowel on- als offline te kunnen gebruiken. 
+Beweeg naar de directory project-PercyHoquee/product/food_tracker/. Daar gekomen geef de command "pip install -r requirements.txt" of "pip3 install -r requirements.txt", afhankelijk van welke versie u gebruikt. Requirements.txt bevat de installatie benodigd om de applicatie zowel on- als offline te kunnen gebruiken. 
 
 De files die de code bevatten werden gepusht naar de "master" branch. 
 Hierdoor ontstonden twee branches: de main branch met markdown files en de master branch met technische files.
 Door de command git push -u origin main, werden de files van de master branch en hun historie toegevoegd aan de main branch.
-Om de github directory beter te organiseren heb ik geprobeerd om alle technische files te organiseren in een "code"folder.
-Tijdens het organiseren van de files in de folder "code" in de local directory, ontstonden er na het pushen naar de remote github directory twee versies van elke file.
-Minpunt was dat de files in de folder geen historie meer hadden. Als oplossing 
+Om de github directory beter te organiseren heb ik geprobeerd om alle technische files te organiseren in een "product" folder.
+Tijdens het organiseren van de files in de folder "product" in de local directory, ontstonden er na het pushen naar de remote github directory twee versies van elke file.
+Één versie buiten de "product" folder met historie en één georganiseerd in de "product" folder zonder historie. 
+Via Github Desktop was het mogelijk om de versie met historie in de "product" folder te krijgen. 
+De folder lijkt geen historie te hebben, maar als er wordt geklikt op de individuele files, kan de historie bekeken worden.
+
 
 ## Auteurs
 - [@Percy Hoquee](https://github.com/PercyHoquee)
