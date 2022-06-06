@@ -1,0 +1,14 @@
+{% extends "food_tracker/specify_date_layout.html" %}
+
+{% block header %}
+    <h1>
+        {{ meal.name }}
+    </h1>
+    <div class="margined-div">
+        Selecteer de datum waarop je dit gerecht wilt toevoegen.
+    </div>
+{% endblock %}
+
+{% block form %}  
+    <form class="date-form specify" action="{% url 'meal_send_date' meal.id %}" method="post">
+{% endblock %}

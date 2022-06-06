@@ -1,0 +1,51 @@
+{% extends "food_tracker/layout.html" %}
+{% load static %}
+
+{% block head %}
+    <link href="{% static 'food_tracker/results.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block body %} 
+    <h1>
+        {{ meal.name }}
+        <a href="{% url 'meal_search' meal.id %}"><i class="fa fa-plus"></i></a>
+        <a href="{% url 'my_meals' %}"><i class="fa fa-check"></i></a>
+    </h1>
+    <h2>
+        Producten
+    </h2>
+    {% if meal.product.all %}
+    <div class="wrapper-grid">
+        {% for product in meal.product.all %}
+        <div class="container-cards">
+            <div class="banner"></div>
+            <img src=https://www.foodandfriends.nl/app/uploads/2020/12/appel-artikel.jpg alt="image" class="food-img">
+            <h1 class="name">{{ product.name }}</h1>
+            <p class="icons">
+                <a href="{% url 'meal_delete_product' meal.id product.id %}"><i class="fa fa-times"></i></a>
+            </p>
+            <ul>
+                <li>Per 100 {{ product.unit }}</li>
+                <li>{{ product.calories }} kcal</li>
+                <li>{{ product.carbs }} gram koolhydraten</li>
+                <li>{{ product.protein }} gram eiwit</li>
+                <li>{{ product.fat }} gram vet</li>
+            </ul>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="margined-div">
+        Dit gerecht bevat momenteel geen producten. Voeg hierboven producten toe.
+    </div>
+    {% endif %}
+{% endblock %}
+
+{% block help %}
+    <p class="sentence">1. U bekijkt nu het overzicht van een gerecht.</p>
+    <p class="sentence">2. De producten die het gerecht vormen staan getoond onder "producten".</p>
+    <p class="sentence">3. Als het gerecht nog geen producten bevat, wordt dat gemeld.</p>
+    <p class="sentence">4. Wilt u producten toevoegen aan dit gerecht? Klik dan op de plus.</p>
+    <p class="sentence">5. Wilt u producten verwijderen uit dit gerecht? Klik dan op het kruisje binnen de producten.</p>
+    <p class="sentence bottom">6. U kunt het gerecht bevestigen door te klikken op het vinkje.</p>
+{% endblock %}
