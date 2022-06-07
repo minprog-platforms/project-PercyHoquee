@@ -79,6 +79,13 @@ Betere variabele namen zouden iets meer duidelijkheid kunnen geven.
 Verder heeft de schrijver lang geprobeerd om betere code te schrijven voor dit stukje, maar is dat niet gelukt.
 Een mogelijke oplossing die tijdens de review naar boven komt, is een nieuwe klasse maken die alle informatie bevat die de loops produceren,
 maar ook dat lijkt de schrijver niet heel efficient. 
+Schoonheid: 
+- De radio opties voor het toevoegen van producten hebben nog de Engelse vertaling voor ontbijt en avondeten. Oplossing: simpelweg aanpassen in html bestand.
+- De cijfers in de tabellen op de index pagina worden niet beperkt tot een bepaald aantal decimalen, waardoor de tabellen vervormd kunnen raken als er een
+dwalende decimaal wordt meegegeven. Oplossing: javascript's (niet gebruikt voor deze opdracht) toFixed() functie beperkt het aantal decimalen tot het aantal aangegeven door de schrijver.
+- Als de gebruiker besluit geen naam mee te geven aan een product of gerecht, wordt het kaartje van dat product of gerecht anders dan die met naam. 
+De kaartjes zonder naam zijn korter van zichzelf, maar als ze naast eentje met naam staan worden ze uitgestrekt, waardoor de "voeg toe" button niet meer op de juiste 
+plek staat en er onderaan het kaartje een wit gebied te zien is. (Deel)oplossing: required toevoegen aan de "naam" input regelt dat er tenminste iets ingevuld moet worden, maar dan alsnog kan de gebruiker alleen een spatie invullen.
 ## CSS
 Binnen de css bestanden is duidelijk de keuze gemaakt om meer te letten op het organiseren van deel tot deel dan totale efficiëntie,
 zie indeling van "form.scss" met de verschillende soorten forms als indeling.
