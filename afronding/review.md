@@ -79,6 +79,7 @@ Betere variabele namen zouden iets meer duidelijkheid kunnen geven.
 Verder heeft de schrijver lang geprobeerd om betere code te schrijven voor dit stukje, maar is dat niet gelukt.
 Een mogelijke oplossing die tijdens de review naar boven komt, is een nieuwe klasse maken die alle informatie bevat die de loops produceren,
 maar ook dat lijkt de schrijver niet heel efficient. 
+
 Schoonheid: 
 - De radio opties voor het toevoegen van producten hebben nog de Engelse vertaling voor ontbijt en avondeten. Oplossing: simpelweg aanpassen in html bestand.
 - De cijfers in de tabellen op de index pagina worden niet beperkt tot een bepaald aantal decimalen, waardoor de tabellen vervormd kunnen raken als er een
