@@ -5,6 +5,9 @@ Gebruikers kunnen naar wens producten aanmaken en toevoegen aan hun voedingsdagb
 Producten kunnen ook samengevoegd worden tot gerecht voor verdere personalisering.
 Gebruikers krijgen vervolgens een overzicht te zien van hun dagelijkse voeding met daarin de waarden van hun calorie-, koolhydraat-, eiwit- en vetinname.
 
+## Auteurs
+- [@Percy Hoquee](https://github.com/PercyHoquee)
+
 ## Belangrijk!!
 Als deze repository wordt gecloned naar de lokale editor, beweeg dan naar de directory "project-PercyHoquee/product/food_tracker/". Daar gekomen geef de command "pip install -r requirements.txt" of "pip3 install -r requirements.txt", afhankelijk van welke versie u gebruikt. Requirements.txt bevat de installatie benodigd om de applicatie zowel on- als offline te kunnen gebruiken. 
 
@@ -17,9 +20,7 @@ Tijdens het organiseren van de files in de folder "product" in de local director
 Via Github Desktop was het mogelijk om de versie met historie in de "product" folder te krijgen. 
 De folder lijkt geen historie te hebben, maar als er wordt geklikt op de individuele files, kan de historie bekeken worden.
 
-
-## Auteurs
-- [@Percy Hoquee](https://github.com/PercyHoquee)
+Link screencast: https://youtu.be/u7Fj9xjdAkA
 
 ![Food Tracker](doc/index.png)
 ![Food Tracker](doc/results.png)
